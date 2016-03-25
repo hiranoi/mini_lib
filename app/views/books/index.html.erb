@@ -1,7 +1,6 @@
 <table>
   <thead>
     <tr>
-      <th>Owner</th>
       <th>Title</th>
       <th>Author</th>
       <th>Publisher</th>
@@ -12,7 +11,6 @@
   <tbody>
     <% @books.each do |book| %>
       <tr>
-        <td><%= book.user.email %></td>
         <td><%= book.title %></td>
         <td><%= book.author %></td>
         <td><%= book.publisher %></td>
@@ -20,5 +18,3 @@
     <% end %>
   </tbody>
 </table>
-
-<%= debug @books %>

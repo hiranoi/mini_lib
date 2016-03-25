@@ -8,8 +8,8 @@ class BooksController < ApplicationController
   end
 
   def create
-    @book = current_user.Book.new(book_params)
-    @book.user_id = current_user
+    @book = Book.new(book_params)
+    @book.user_id = current_user.id
 
     inquiry = Book.inquiry_api(@book.isbn)
     @book.title = inquiry['//rss/channel/item/title'].text

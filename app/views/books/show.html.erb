@@ -1,0 +1,25 @@
+
+
+<p>
+  <strong>Title:</strong>
+  <%= @book.title %>
+</p>
+
+<p>
+  <strong>Author:</strong>
+  <%= @book.author %>
+</p>
+
+<p>
+  <strong>publisher:</strong>
+  <%= @book.publisher %>
+</p>
+
+<p>
+  <strong>Owner:</strong>
+  <%= @book.user.email %>
+</p>
+
+<% if current_user.id == @book.user_id %>
+  <%= link_to 'Destroy', @book, method: :delete, data: { confirm: 'Are you sure?' } %>
+<% end %>

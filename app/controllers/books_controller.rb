@@ -1,6 +1,9 @@
 class BooksController < ApplicationController
+  before_action :authenticate_user!
+  before_action :set_book, only: [:edit, :update, :destroy]
+
   def index
-    @books = Book.joins(:user)
+    @books = Book.all
   end
 
   def new
@@ -25,7 +28,20 @@ class BooksController < ApplicationController
     end
   end
 
+  def show
+    @book = Book.joins(:user).find(params[:id])
+  end
+
+  def destroy
+    @book.destroy
+    redirect_to books_path, notice: 'Book was successfully destroyed.'
+  end
+
   private
+
+  def set_book
+    @book = Book.find(params[:id])
+  end
 
   def book_params
     params.require(:book).permit(:user_id, :title, :author, :publisher, :isbn)

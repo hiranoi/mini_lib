@@ -13,12 +13,12 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="orm-group">
     <%= f.label :isbn %><br>
-    <%= f.number_field :isbn %>
+    <%= f.number_field :isbn, { :class => "form-control" } %>
   </div>
 
   <div class="actions">
-    <%= f.submit('確認') %>
+    <%= f.submit('送信')%>
   </div>
 <% end %>

@@ -26,6 +26,9 @@ class BooksController < ApplicationController
       render :new
       #format.json { render json: @book.errors, status: :unprocessable_entity }
     end
+
+  rescue
+    redirect_to new_book_path, alert: :unprocessable_entity
   end
 
   def show

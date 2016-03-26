@@ -1,6 +1,8 @@
 class BooksController < ApplicationController
+  before_action :set_book, only: [:edit, :update, :destroy]
+
   def index
-    @books = Book.joins(:user)
+    @books = Book.all
   end
 
   def new
@@ -25,7 +27,15 @@ class BooksController < ApplicationController
     end
   end
 
+  def show
+    @book = Book.joins(:user).find(params[:id])
+  end
+
   private
+
+  def set_book
+    @book = Book.find(params[:id])
+  end
 
   def book_params
     params.require(:book).permit(:user_id, :title, :author, :publisher, :isbn)

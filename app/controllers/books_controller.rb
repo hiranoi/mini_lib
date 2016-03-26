@@ -32,6 +32,11 @@ class BooksController < ApplicationController
     @book = Book.joins(:user).find(params[:id])
   end
 
+  def destroy
+    @book.destroy
+    redirect_to books_path, notice: 'Book was successfully destroyed.'
+  end
+
   private
 
   def set_book

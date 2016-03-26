@@ -1,6 +1,8 @@
 class Book < ActiveRecord::Base
   belongs_to :user
 
+  validates :isbn, length: { maximum: 13 }
+
   def self.inquiry_api(isbn)
     require 'net/http'
     require 'uri'
@@ -9,6 +11,6 @@ class Book < ActiveRecord::Base
     base = 'http://iss.ndl.go.jp/api/opensearch?isbn='
     url = URI.parse(base + isbn.to_s)
     res = Net::HTTP.new(url.host, url.port).get(url)
-    REXML::Document.new(res.body).elements
+    res_xml = REXML::Document.new(res.body).elements
   end
 end

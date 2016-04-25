@@ -3,7 +3,7 @@ class BooksController < ApplicationController
   before_action :set_book, only: [:edit, :update, :destroy]
 
   def index
-    @books = Book.all
+    @books = Book.joins(:user).all
   end
 
   def new
@@ -31,6 +31,8 @@ class BooksController < ApplicationController
     redirect_to new_book_path, alert: :unprocessable_entity
   end
 
+
+
   def show
     @book = Book.joins(:user).find(params[:id])
   end
@@ -38,6 +40,19 @@ class BooksController < ApplicationController
   def destroy
     @book.destroy
     redirect_to books_path, notice: 'Book was successfully destroyed.'
+  end
+
+  def update
+    book = Book.find(params[:id])
+    book.user_id = current_user.id
+    if book.save
+      redirect_to book_path, notice: 'user was successfully changed.'
+      #format.json { render :show, status: :created, location: @book }
+    else
+      render :new
+      #format.json { render json: @book.errors, status: :unprocessable_entity }
+    end
+    
   end
 
   private

@@ -20,7 +20,7 @@ class BooksController < ApplicationController
     @book.publisher = inquiry['//rss/channel/item/dc:publisher'].text
 
     if @book.save
-      redirect_to new_book_path, notice: 'book was successfully created.'
+      redirect_to new_book_path, notice: '図書を登録しました。'
       #format.json { render :show, status: :created, location: @book }
     else
       render :new
@@ -39,14 +39,14 @@ class BooksController < ApplicationController
 
   def destroy
     @book.destroy
-    redirect_to books_path, notice: 'Book was successfully destroyed.'
+    redirect_to books_path, notice: '図書を削除しました。'
   end
 
   def update
     book = Book.find(params[:id])
     book.user_id = current_user.id
     if book.save
-      redirect_to book_path, notice: 'user was successfully changed.'
+      redirect_to book_path, notice: '所有者を変更しました。'
       #format.json { render :show, status: :created, location: @book }
     else
       render :new

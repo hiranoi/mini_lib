@@ -1,27 +1,27 @@
 
 
 <p>
-  <strong>Title:</strong>
+  <strong>図書名:</strong><br>
   <%= @book.title %>
 </p>
 
 <p>
-  <strong>Author:</strong>
+  <strong>著者名:</strong><br>
   <%= @book.author %>
 </p>
 
 <p>
-  <strong>publisher:</strong>
+  <strong>出版社:</strong><br>
   <%= @book.publisher %>
 </p>
 
 <p>
-  <strong>Owner:</strong>
+  <strong>現在の所有者:</strong><br>
   <%= @book.user.email %>
 </p>
 
-<%= button_to 'Rent', @book, method: :put %>
+<%= button_to 'かります！',@book , :method => :put , data: { confirm: '所有者の変更を行ってよろしいですか？' }, :class => 'btn btn-primary' %>
 
-<% if current_user.id == @book.user_id %>
-  <%= link_to 'Destroy', @book, method: :delete, data: { confirm: 'Are you sure?' } %>
-<% end %>
+<%#if current_user.id == @book.user_id %>
+  <%#= link_to 'Destroy', @book, method: :delete,  %>
+<%# end %>

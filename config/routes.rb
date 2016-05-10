@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
-  resources :books
+  resources :books do
+    member do
+      patch 'rent'
+    end
+  end
+
   #devise_for :users
   root 'welcome#index'
   devise_for :users, :controllers => {

@@ -20,8 +20,15 @@
   <%= @book.user.email %>
 </p>
 
-<%= button_to 'かります！',@book , :method => :put , data: { confirm: '所有者の変更を行ってよろしいですか？' }, :class => 'btn btn-primary' %>
+<% if @book.user_id != current_user.id %>
+  <%= button_to '借ります！', rent_book_path(@book), :method => :patch, data: { confirm: '所有者の変更を行ってよろしいですか？' }, :class => 'btn btn-primary' %>
+<% else %>
+  <%= button_to '返します！', edit_book_path(@book), :method => :get, :class => 'btn btn-primary' %>
+<% end %>
 
+
+
+<%#= button_to "削除", { :action => "rent", :id => @book.id }, :confirm => "本当に削除しますか?" %>
 <%#if current_user.id == @book.user_id %>
   <%#= link_to 'Destroy', @book, method: :delete,  %>
 <%# end %>

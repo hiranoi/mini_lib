@@ -31,10 +31,9 @@ class BooksController < ApplicationController
     redirect_to new_book_path, alert: :unprocessable_entity
   end
 
-
-
   def show
     @book = Book.joins(:user).find(params[:id])
+    @users = User.all
   end
 
   def destroy
@@ -43,6 +42,28 @@ class BooksController < ApplicationController
   end
 
   def update
+    respond_to do |format|
+      if @book.update(book_params)
+        format.html { redirect_to @book, notice: 'Book was successfully updated.' }
+        format.json { render :show, status: :ok, location: @book }
+      else
+        format.html { render :edit }
+        format.json { render json: @book.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+#  def update
+#    book = Book.find(params[:id])
+#    book.user_id = current_user.id
+#    if book.save
+#      redirect_to book_path, notice: '所有者を変更しました。'
+#      #format.json { render :show, status: :created, location: @book }
+#    else
+#      render :new
+#      #format.json { render json: @book.errors, status: :unprocessable_entity }
+#    end
+#   end
+  def rent
     book = Book.find(params[:id])
     book.user_id = current_user.id
     if book.save
@@ -52,7 +73,6 @@ class BooksController < ApplicationController
       render :new
       #format.json { render json: @book.errors, status: :unprocessable_entity }
     end
-    
   end
 
   private

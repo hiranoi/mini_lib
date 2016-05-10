@@ -1,7 +1,7 @@
 <table class="table">
   <thead>
     <tr>
-      <th>#</th>
+      <!--<th>#</th>-->
       <th>図書名</th>
       <th>現在の所有者</th>
       <th>最終更新日時</th>
@@ -12,10 +12,10 @@
   <tbody>
     <% @books.each do |book| %>
       <tr>
-        <td><%= book.id %></td>
+        <!--<td><%= book.id %></td>-->
         <td><%= link_to book.title, book %></td>
         <td><%= book.user.email %></td>
-        <td><%= book.updated_at %></td>
+        <td><%= book.updated_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
       </tr>
     <% end %>
   </tbody>

@@ -15,14 +15,41 @@
   <%= @book.publisher %>
 </p>
 
-<p>
-  <strong>現在の所有者:</strong><br>
-  <%= @book.user.email %>
-</p>
-
-<% if @book.user_id != current_user.id %>
-  <%= button_to '借ります！', rent_book_path(@book), :method => :patch, data: { confirm: '所有者の変更を行ってよろしいですか？' }, :class => 'btn btn-primary' %>
+<% if @book.user_id == 1 %>
+  <p>
+    <strong>貸出状況:</strong><br>
+    貸出可能(17Fベイ側書庫)
+  </p>
+  <p>
+    <strong>返却期限：</strong><br>
+    -
+  </p>
+<% elsif @book.user_id == 2 %>
+  <p>
+    <strong>貸出状況:</strong><br>
+    貸出可能(17Fリバー側書庫)
+  </p>
+  <p>
+    <strong>返却期限：</strong><br>
+    -
+  </p>
 <% else %>
+  <p>
+    <strong>貸出状況:</strong><br>
+    貸出中
+  </p>
+  <p>
+    <strong>返却期限：</strong><br>
+    <%= (@book.updated_at + 7.days).strftime("%Y-%m-%d") %>
+  </p>
+<% end %>
+
+
+
+<% if @book.user_id == 1 || @book.user_id == 2 %>
+  <%= button_to '借ります！', rent_book_path(@book), 
+  :method => :patch, data: { confirm: '貸出処理を行いますか？' }, :class => 'btn btn-primary' %>
+<% elsif @book.user_id == current_user.id %>
   <%= button_to '返します！', edit_book_path(@book), :method => :get, :class => 'btn btn-primary' %>
 <% end %>
 

@@ -67,7 +67,7 @@ class BooksController < ApplicationController
     book = Book.find(params[:id])
     book.user_id = current_user.id
     if book.save
-      redirect_to book_path, notice: '所有者を変更しました。'
+      redirect_to book_path, notice: '貸出処理が完了しました。'
       #format.json { render :show, status: :created, location: @book }
     else
       render :new

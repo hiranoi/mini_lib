@@ -3,8 +3,8 @@
     <tr>
       <!--<th>#</th>-->
       <th>図書名</th>
-      <th>現在の所有者</th>
-      <th>最終更新日時</th>
+      <th>貸出状況</th>
+      <th>返却期限</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -14,8 +14,19 @@
       <tr>
         <!--<td><%= book.id %></td>-->
         <td><%= link_to book.title, book %></td>
-        <td><%= book.user.email %></td>
-        <td><%= book.updated_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
+        <% if book.user_id == 1 %>
+          <td>貸出可能(17Fベイ側書庫)</td>
+          <td>-</td>
+
+        <% elsif book.user_id == 2 %>
+          <td>貸出可能(17Fリバー側書庫)</td>
+          <td>-</td>
+
+        <% else %>
+          <td>貸出中</td>
+          <td><%= (book.updated_at + 7.days).strftime("%Y-%m-%d") %></td>
+        <% end %>
+
       </tr>
     <% end %>
   </tbody>

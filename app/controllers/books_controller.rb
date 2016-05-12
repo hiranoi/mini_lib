@@ -33,7 +33,7 @@ class BooksController < ApplicationController
 
   def show
     @book = Book.joins(:user).find(params[:id])
-    @users = User.all
+    #@users = User.all
   end
 
   def destroy

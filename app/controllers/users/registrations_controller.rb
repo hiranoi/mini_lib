@@ -28,10 +28,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # DELETE override
-  def destroy
-    @user_books = Book.destroy_all(user_id: current_user.id)
-    super
-  end
+  #def destroy
+  #  user_books_count = Book.find_by(:user_id => current_user.id).count
+  #  if user_books_count == 0
+  #    super
+  #  end
+  #end
 
   # GET /resource/cancel
   # Forces the session data which is usually expired after sign

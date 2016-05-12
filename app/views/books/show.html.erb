@@ -17,7 +17,7 @@
 
 <% if @book.user_id == 1 %>
   <p>
-    <strong>貸出状況:</strong><br>
+    <strong>貸出日:</strong><br>
     貸出可能(17Fベイ側書庫)
   </p>
   <p>
@@ -26,7 +26,7 @@
   </p>
 <% elsif @book.user_id == 2 %>
   <p>
-    <strong>貸出状況:</strong><br>
+    <strong>貸出日:</strong><br>
     貸出可能(17Fリバー側書庫)
   </p>
   <p>
@@ -35,8 +35,8 @@
   </p>
 <% else %>
   <p>
-    <strong>貸出状況:</strong><br>
-    貸出中
+    <strong>貸出日:</strong><br>
+    <%= (@book.updated_at).strftime("%Y-%m-%d") %>
   </p>
   <p>
     <strong>返却期限：</strong><br>

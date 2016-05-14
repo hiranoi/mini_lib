@@ -8,7 +8,11 @@ class BooksController < ApplicationController
   end
 
   def new
-    @book = Book.new
+    if view_context.user_admin?
+      @book = Book.new
+    else
+      redirect_to books_path
+    end
   end
 
   def create

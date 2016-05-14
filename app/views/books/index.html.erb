@@ -18,16 +18,10 @@
       <tr>
         <!--<td><%= book.id %></td>-->
         <td><%= link_to book.title, book %></td>
-        <% if book.user_id == 1 %>
-          <td>貸出可能(17Fベイ側書庫)</td>
+        <% if book.user.syoko %>
+          <td>貸出可能(<%=book.user.place %>)</td>
           <td>-</td>
           <td>-</td>
-
-        <% elsif book.user_id == 2 %>
-          <td>貸出可能(17Fリバー側書庫)</td>
-          <td>-</td>
-          <td>-</td>
-
         <% else %>
           <td><%= (book.updated_at).strftime("%Y-%m-%d") %></td>
           <td><%= (book.updated_at + 7.days).strftime("%Y-%m-%d") %></td>
@@ -36,5 +30,6 @@
 
       </tr>
     <% end %>
+
   </tbody>
 </table>

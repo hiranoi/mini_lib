@@ -42,6 +42,10 @@ class BooksController < ApplicationController
     redirect_to books_path, notice: '図書を削除しました。'
   end
 
+  def edit
+    @syoko = User.where(syoko: true)
+  end
+
   def update
     respond_to do |format|
       if @book.update(book_params)

@@ -15,23 +15,10 @@
   <%= @book.publisher %>
 </p>
 
-<% if @book.user_id == 1 %>
+<% if @book.user.syoko %>
   <p>
     <strong>貸出日:</strong><br>
-    貸出可能(17Fベイ側書庫)
-  </p>
-  <p>
-    <strong>返却期限：</strong><br>
-    -
-  </p>
-  <p>
-    <strong>利用者：</strong><br>
-    -
-  </p>
-<% elsif @book.user_id == 2 %>
-  <p>
-    <strong>貸出日:</strong><br>
-    貸出可能(17Fリバー側書庫)
+    貸出可能(<%= @book.user.place %>)
   </p>
   <p>
     <strong>返却期限：</strong><br>

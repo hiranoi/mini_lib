@@ -12,10 +12,16 @@
       </ul>
     </div>
   <% end %>
-
+  <%#= debug @syoko %>
+  <% list = [] %>
+  <% @syoko.each_with_object([]) do |s, _| %>
+    <% list.push([s.place, s.id]) %>
+    <%#= debug _ %>
+  <% end %>
   <div class="field">
     返却先<br>
-    <%= f.select :user_id, [["17Fベイ側書庫", "1"], ["17Fリバー側書庫", "2"]], :class => "dropdown-menu" %><br>
+    <%#= f.select :user_id, [["17Fベイ側書庫", "1"], ["17Fリバー側書庫", "2"]], :class => "dropdown-menu" %>
+    <%= f.select :user_id, list, :class => "dropdown-menu" %><br>
   </div>
   <div class="actions">
     <%= f.submit '返却', :class => 'btn btn-primary' %>

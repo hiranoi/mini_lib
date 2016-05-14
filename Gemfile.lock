@@ -221,6 +221,7 @@ DEPENDENCIES
   devise-bootstrap-views
   jbuilder (~> 2.0)
   jquery-rails
+  kaminari
   rails (= 4.2.5.1)
   rails-i18n
   sass-rails (~> 5.0)

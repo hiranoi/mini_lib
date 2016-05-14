@@ -24,6 +24,10 @@
     <strong>返却期限：</strong><br>
     -
   </p>
+  <p>
+    <strong>利用者：</strong><br>
+    -
+  </p>
 <% elsif @book.user_id == 2 %>
   <p>
     <strong>貸出日:</strong><br>
@@ -31,6 +35,10 @@
   </p>
   <p>
     <strong>返却期限：</strong><br>
+    -
+  </p>
+  <p>
+    <strong>利用者：</strong><br>
     -
   </p>
 <% else %>
@@ -41,6 +49,10 @@
   <p>
     <strong>返却期限：</strong><br>
     <%= (@book.updated_at + 7.days).strftime("%Y-%m-%d") %>
+  </p>
+  <p>
+    <strong>利用者：</strong><br>
+    <%= @book.user.email %>
   </p>
 <% end %>
 

@@ -1,28 +1,37 @@
-== README
+# mini_lib
+====
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+* コミュニティ内での図書の貸し借りを管理するアプリケーション
 
-Things you may want to cover:
+## 開発環境構築
+```shell
+git clone https://github.com/hiranoi/mini_lib.git
+cd mini_lib
+bundle install
+bundle exec rake db:migrate
+bundle exec rake db:seed
+```
+* http://localhost:3000/ にアクセス
+* [新規アカウント登録]よりアカウントを作成する
 
-* Ruby version
+## 司書ツールへのログイン
+* http://localhost:3000/admin
+    admin@example.com / password
+* Admin Users → [Admin Userを作成する]
+* Email / password→作成
+* admin@example.comを削除する
 
-* System dependencies
+## 書籍登録権限の追加
+* http://localhost:3000/admin
+* [Users] → 権限追加するレコードの[編集]をクリック
+* Adminフラグにチェック → [更新]
 
-* Configuration
+## 書庫の追加
+* 書庫となる新規アカウントを追加
+* http://localhost:3000/admin/users
+* 書庫とするユーザのレコードの[編集]をクリック
+* 書庫フラグにチェック && Placeに場所を記載
+  * (EX.10階●●の書庫←ここの記載が図書返却先(http://localhost:3000/books/1/edit?)の表示となる)
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+## 書籍一括登録バッチの利用方法
+* TODO:書く

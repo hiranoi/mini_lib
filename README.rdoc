@@ -1,7 +1,7 @@
 = mini_lib
 ====
 
-* コミュニティ内での図書の貸し借りを管理するアプリケーション
+コミュニティ内での図書の貸し借りを管理するアプリケーション
 
 == 開発環境構築
     git clone https://github.com/hiranoi/mini_lib.git

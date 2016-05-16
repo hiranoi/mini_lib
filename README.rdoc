@@ -1,9 +1,9 @@
-# mini_lib
+= mini_lib
 ====
 
 * コミュニティ内での図書の貸し借りを管理するアプリケーション
 
-## 開発環境構築
+== 開発環境構築
 ```shell
 git clone https://github.com/hiranoi/mini_lib.git
 cd mini_lib
@@ -14,24 +14,24 @@ bundle exec rake db:seed
 * http://localhost:3000/ にアクセス
 * [新規アカウント登録]よりアカウントを作成する
 
-## 司書ツールへのログイン
+== 司書ツールへのログイン
 * http://localhost:3000/admin
     admin@example.com / password
 * Admin Users → [Admin Userを作成する]
 * Email / password→作成
 * admin@example.comを削除する
 
-## 書籍登録権限の追加
+== 書籍登録権限の追加
 * http://localhost:3000/admin
 * [Users] → 権限追加するレコードの[編集]をクリック
 * Adminフラグにチェック → [更新]
 
-## 書庫の追加
+== 書庫の追加
 * 書庫となる新規アカウントを追加
 * http://localhost:3000/admin/users
 * 書庫とするユーザのレコードの[編集]をクリック
 * 書庫フラグにチェック && Placeに場所を記載
   * (EX.10階●●の書庫←ここの記載が図書返却先(http://localhost:3000/books/1/edit?)の表示となる)
 
-## 書籍一括登録バッチの利用方法
+== 書籍一括登録バッチの利用方法
 * TODO:書く

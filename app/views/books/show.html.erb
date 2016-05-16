@@ -1,25 +1,60 @@
 
 
 <p>
-  <strong>Title:</strong>
+  <strong>図書名:</strong><br>
   <%= @book.title %>
 </p>
 
 <p>
-  <strong>Author:</strong>
+  <strong>著者名:</strong><br>
   <%= @book.author %>
 </p>
 
 <p>
-  <strong>publisher:</strong>
+  <strong>出版社:</strong><br>
   <%= @book.publisher %>
 </p>
 
-<p>
-  <strong>Owner:</strong>
-  <%= @book.user.email %>
-</p>
-
-<% if current_user.id == @book.user_id %>
-  <%= link_to 'Destroy', @book, method: :delete, data: { confirm: 'Are you sure?' } %>
+<% if @book.user.syoko %>
+  <p>
+    <strong>貸出日:</strong><br>
+    貸出可能(<%= @book.user.place %>)
+  </p>
+  <p>
+    <strong>返却期限：</strong><br>
+    -
+  </p>
+  <p>
+    <strong>利用者：</strong><br>
+    -
+  </p>
+<% else %>
+  <p>
+    <strong>貸出日:</strong><br>
+    <%= (@book.updated_at).strftime("%Y-%m-%d") %>
+  </p>
+  <p>
+    <strong>返却期限：</strong><br>
+    <%= (@book.updated_at + 7.days).strftime("%Y-%m-%d") %>
+  </p>
+  <p>
+    <strong>利用者：</strong><br>
+    <%= @book.user.email %>
+  </p>
 <% end %>
+
+
+
+<% if @book.user_id == 1 || @book.user_id == 2 %>
+  <%= button_to '借ります！', rent_book_path(@book), 
+  :method => :patch, data: { confirm: '貸出処理を行いますか？' }, :class => 'btn btn-primary' %>
+<% elsif @book.user_id == current_user.id %>
+  <%= button_to '返します！', edit_book_path(@book), :method => :get, :class => 'btn btn-primary' %>
+<% end %>
+
+
+
+<%#= button_to "削除", { :action => "rent", :id => @book.id }, :confirm => "本当に削除しますか?" %>
+<%#if current_user.id == @book.user_id %>
+  <%#= link_to 'Destroy', @book, method: :delete,  %>
+<%# end %>

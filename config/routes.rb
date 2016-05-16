@@ -1,5 +1,12 @@
 Rails.application.routes.draw do
-  resources :books
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
+  resources :books do
+    member do
+      patch 'rent'
+    end
+  end
+
   #devise_for :users
   root 'welcome#index'
   devise_for :users, :controllers => {

@@ -3,11 +3,16 @@ class BooksController < ApplicationController
   before_action :set_book, only: [:edit, :update, :destroy]
 
   def index
-    @books = Book.all
+    #@books = Book.joins(:user).all
+    @books = Book.joins(:user).page(params[:page])
   end
 
   def new
-    @book = Book.new
+    if view_context.user_admin?
+      @book = Book.new
+    else
+      redirect_to books_path
+    end
   end
 
   def create
@@ -20,7 +25,7 @@ class BooksController < ApplicationController
     @book.publisher = inquiry['//rss/channel/item/dc:publisher'].text
 
     if @book.save
-      redirect_to new_book_path, notice: 'book was successfully created.'
+      redirect_to new_book_path, notice: '図書を登録しました。'
       #format.json { render :show, status: :created, location: @book }
     else
       render :new
@@ -33,11 +38,50 @@ class BooksController < ApplicationController
 
   def show
     @book = Book.joins(:user).find(params[:id])
+    #@users = User.all
   end
 
   def destroy
     @book.destroy
-    redirect_to books_path, notice: 'Book was successfully destroyed.'
+    redirect_to books_path, notice: '図書を削除しました。'
+  end
+
+  def edit
+    @syoko = User.where(syoko: true)
+  end
+
+  def update
+    respond_to do |format|
+      if @book.update(book_params)
+        format.html { redirect_to @book, notice: 'Book was successfully updated.' }
+        format.json { render :show, status: :ok, location: @book }
+      else
+        format.html { render :edit }
+        format.json { render json: @book.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+#  def update
+#    book = Book.find(params[:id])
+#    book.user_id = current_user.id
+#    if book.save
+#      redirect_to book_path, notice: '所有者を変更しました。'
+#      #format.json { render :show, status: :created, location: @book }
+#    else
+#      render :new
+#      #format.json { render json: @book.errors, status: :unprocessable_entity }
+#    end
+#   end
+  def rent
+    book = Book.find(params[:id])
+    book.user_id = current_user.id
+    if book.save
+      redirect_to book_path, notice: '貸出処理が完了しました。'
+      #format.json { render :show, status: :created, location: @book }
+    else
+      render :new
+      #format.json { render json: @book.errors, status: :unprocessable_entity }
+    end
   end
 
   private

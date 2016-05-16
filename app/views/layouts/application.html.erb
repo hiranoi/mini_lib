@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>MOKU LIB</title>
+  <title>JaQLIB</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
@@ -11,7 +11,7 @@
   <div class="container-fluid">
   <!-- ヘッダー部分 ================ -->
     <div class="navbar-header">
-      <%= link_to 'MOKU LIB', root_path,{ :class => "navbar-brand" } %>
+      <%= link_to 'JaQ LIB', root_path,{ :class => "navbar-brand" } %>
       <!--<a class="navbar-brand" href="#">MIN LIB</a> -->
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav_target">
         <span class="icon-bar"></span>
@@ -23,17 +23,19 @@
     <div class="collapse navbar-collapse" id="nav_target">
       <ul class="nav navbar-nav">
         <!-- リンクのみ -->
-        <li><%= link_to 'Books', books_path %></li>
-        <li><%= link_to 'Register', new_book_path %></li>
-        <li><%= link_to 'About', 'https://github.com/hiranoi/mini_lib' %></li>
+        <li><%= link_to '図書一覧', books_path %></li>
+        <% if user_admin? %>
+          <li><%= link_to '図書登録', new_book_path %></li>
+        <% end %>
+        <!--<li><%= link_to '開発(外部リンク)', 'https://github.com/hiranoi/mini_lib' %></li>-->
       </ul>
       <ul class="nav navbar-nav navbar-right">
       <% if user_signed_in? %>
-        <li><%= link_to 'edit profile', edit_user_registration_path %></li>
-        <li><%= link_to "logout", destroy_user_session_path, method: :delete %></li>
+        <li><%= link_to 'アカウント設定', edit_user_registration_path %></li>
+        <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
       <% else %>
-        <li><%= link_to 'signin', new_user_registration_path %></li>
-        <li><%= link_to 'login', new_user_session_path %></li>
+        <li><%= link_to '新規アカウント登録', new_user_registration_path %></li>
+        <li><%= link_to 'ログイン', new_user_session_path %></li>
       <% end %>
       </ul>
     </div>

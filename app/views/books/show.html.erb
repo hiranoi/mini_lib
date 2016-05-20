@@ -45,7 +45,7 @@
 
 
 
-<% if @book.user_id == 1 || @book.user_id == 2 %>
+<% if @book.user.syoko %>
   <%= button_to '借ります！', rent_book_path(@book), 
   :method => :patch, data: { confirm: '貸出処理を行いますか？' }, :class => 'btn btn-primary' %>
 <% elsif @book.user_id == current_user.id %>

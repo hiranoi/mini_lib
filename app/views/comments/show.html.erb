@@ -1,19 +1,14 @@
-<p id="notice"><%= notice %></p>
-
 <p>
-  <strong>User:</strong>
-  <%= @comment.user_id %>
+  <strong>ユーザ名:</strong><p>
+  <%= @comment.user.email %>
 </p>
 
 <p>
-  <strong>Book:</strong>
-  <%= @comment.book_id %>
-</p>
-
-<p>
-  <strong>Comment:</strong>
+  <strong>感想:</strong><p>
   <%= @comment.comment %>
 </p>
 
-<%= link_to 'Edit', edit_comment_path(@comment) %> |
-<%= link_to 'Back', comments_path %>
+<% if current_user.id == @comment.user.id %>
+  <%= link_to '編集', edit_comment_path(@comment) %> |
+<% end %>
+<%= link_to '戻る', book_path(@comment.book_id) %>

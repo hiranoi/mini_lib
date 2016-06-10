@@ -10,11 +10,14 @@ class CommentsController < ApplicationController
   # GET /comments/1
   # GET /comments/1.json
   def show
+    @comment = Comment.joins(:user).find(params[:id])
   end
 
   # GET /comments/new
   def new
     @comment = Comment.new
+    @comment.user_id = current_user.id
+    @comment.book_id = params[:book_id]
   end
 
   # GET /comments/1/edit
@@ -28,7 +31,7 @@ class CommentsController < ApplicationController
 
     respond_to do |format|
       if @comment.save
-        format.html { redirect_to @comment, notice: 'Comment was successfully created.' }
+        format.html { redirect_to @comment, notice: 'コメントしました。' }
         format.json { render :show, status: :created, location: @comment }
       else
         format.html { render :new }
@@ -42,7 +45,7 @@ class CommentsController < ApplicationController
   def update
     respond_to do |format|
       if @comment.update(comment_params)
-        format.html { redirect_to @comment, notice: 'Comment was successfully updated.' }
+        format.html { redirect_to @comment, notice: 'コメントを編集しました。' }
         format.json { render :show, status: :ok, location: @comment }
       else
         format.html { render :edit }

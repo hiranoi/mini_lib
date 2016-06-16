@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
+  resources :comments
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-  resources :books do
+  resources :books, shallow: true do
     member do
       patch 'rent'
     end
+    resources :comments
   end
 
   #devise_for :users

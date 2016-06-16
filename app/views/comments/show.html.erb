@@ -1,0 +1,14 @@
+<p>
+  <strong>ユーザ名:</strong><p>
+  <%= @comment.user.email %>
+</p>
+
+<p>
+  <strong>感想:</strong><p>
+  <%= @comment.comment %>
+</p>
+
+<% if current_user.id == @comment.user.id %>
+  <%= link_to '編集', edit_comment_path(@comment) %> |
+<% end %>
+<%= link_to '戻る', book_path(@comment.book_id) %>

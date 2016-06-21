@@ -8,14 +8,14 @@ index do
   column :author
   column :publisher
   column :isbn
-  column :owner_id
+  column :owner
   actions
 end
 
 form do |f|
   f.inputs "Books Details" do
     f.input :user_id
-    f.input :owner_id
+    f.input :owner
   end
   f.actions
 end

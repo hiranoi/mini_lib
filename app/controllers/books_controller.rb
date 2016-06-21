@@ -17,8 +17,10 @@ class BooksController < ApplicationController
 
   def create
     @book = Book.new(book_params)
+    user = User.find(current_user.id)
+
     @book.user_id = current_user.id
-    @book.owner_id = current_user.id
+    @book.owner = user.email
 
     inquiry = Book.inquiry_api(@book.isbn)
     @book.title = inquiry['//rss/channel/item/title'].text

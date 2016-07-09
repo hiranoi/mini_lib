@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :articles
   resources :comments
-  resources :api
+  
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   resources :books, shallow: true do
@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     :registrations => 'users/registrations'
   }
 
+  get 'api/' => 'api#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -10,8 +10,8 @@ class ArticlesController < ApplicationController
 
   # GET /articles/1
   # GET /articles/1.json
-  #def show
-  #end
+  def show
+  end
 
   # GET /articles/new
   def new
@@ -40,7 +40,7 @@ class ArticlesController < ApplicationController
   def update
     respond_to do |format|
       if @article.update(article_params)
-        format.html { redirect_to @article, notice: 'Article was successfully updated.' }
+        format.html { redirect_to @article, notice: '記事を更新しました。' }
         format.json { render :show, status: :ok, location: @article }
       else
         format.html { render :edit }
@@ -54,7 +54,7 @@ class ArticlesController < ApplicationController
   def destroy
     @article.destroy
     respond_to do |format|
-      format.html { redirect_to articles_url, notice: 'Article was successfully destroyed.' }
+      format.html { redirect_to articles_url, notice: '記事を削除しました。' }
       format.json { head :no_content }
     end
   end

@@ -14,7 +14,7 @@
   <tbody>
     <% @articles.each do |article| %>
       <tr>
-        <td><%= link_to article.title, article.url %></td>
+        <td><%= link_to article.title, article.url, :target=>["_blank"]%></td>
         <td><%= article.user.email %></td>
         <% if article.user_id.to_i == current_user.id.to_i %>
           <td><%= link_to '編集', edit_article_path(article) %></td>

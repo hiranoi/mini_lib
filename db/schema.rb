@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(version: 20160621143802) do
   create_table "articles", force: :cascade do |t|
     t.string   "title"
     t.string   "url"
-    t.string   "user_id"
+    t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

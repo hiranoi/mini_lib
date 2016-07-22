@@ -4,12 +4,25 @@ class ApiController < ApplicationController
   	# パラメータ取得
 	isbn = params[:isbn]
 	user_id = params[:user_id]
+  api_key = params[:api_key]
 
-	# 初期化
-	user = User.find(user_id)
-    @book = Book.new()
-    @book.user_id = user_id
-    @book.owner = user.email
+  # 入力チェック
+  if !api_key.eql?("z6JnEVcS") || user_id.blank? || isbn.blank?
+    render :json => {'text'=> '入力チェックエラー'}
+    return
+  end
+
+	# ユーザー取得
+	begin
+    user = User.find(user_id)
+  rescue
+    render :json => {'text'=> 'ユーザーが存在しません'}
+    return
+  end    
+
+  @book = Book.new()
+  @book.user_id = user_id
+  @book.owner = user.email
 
 	# 国会API問い合わせ
     inquiry = Book.inquiry_api(isbn)

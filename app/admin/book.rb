@@ -9,6 +9,7 @@ index do
   column :publisher
   column :isbn
   column :owner
+  column :comments_count
   actions
 end
 

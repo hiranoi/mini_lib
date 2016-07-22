@@ -33,8 +33,9 @@
       <ul class="nav navbar-nav">
         <!-- リンクのみ -->
         <li><%= link_to '図書一覧', books_path %></li>
+        <li><%= link_to '記事一覧', articles_path %></li>
+        <!-- adminユーザのみ公開 -->
         <% if user_admin? %>
-          <li><%= link_to '記事一覧', articles_path %></li>
           <li><%= link_to '図書登録', new_book_path %></li>
         <% end %>
         <!--<li><%= link_to '開発(外部リンク)', 'https://github.com/hiranoi/mini_lib' %></li>-->

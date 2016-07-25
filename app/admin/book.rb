@@ -1,5 +1,5 @@
 ActiveAdmin.register Book do
-permit_params :title,:publisher,:isbn, :owner
+permit_params :title,:publisher,:isbn, :owner, :comments_count
 
 index do
   selectable_column

@@ -17,6 +17,7 @@ form do |f|
   f.inputs "Books Details" do
     f.input :user_id
     f.input :owner
+    f.input :comments_count
   end
   f.actions
 end

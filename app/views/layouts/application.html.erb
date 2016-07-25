@@ -37,6 +37,7 @@
         <!-- adminユーザのみ公開 -->
         <% if user_admin? %>
           <li><%= link_to '図書登録', new_book_path %></li>
+          <li><%= link_to '貸出履歴', rent_history_path %></li>
         <% end %>
         <!--<li><%= link_to '開発(外部リンク)', 'https://github.com/hiranoi/mini_lib' %></li>-->
       </ul>

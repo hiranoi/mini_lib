@@ -5,7 +5,7 @@ class ArticlesController < ApplicationController
   # GET /articles
   # GET /articles.json
   def index
-    @articles = Article.joins(:user)
+    @articles = Article.joins(:user).page(params[:page])
   end
 
   # GET /articles/1

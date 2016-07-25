@@ -12,6 +12,8 @@ Rails.application.routes.draw do
 
   #devise_for :users
   root 'welcome#index'
+  get 'rent_history' => 'rent_history#index'
+
   devise_for :users, :controllers => {
     :registrations => 'users/registrations'
   }

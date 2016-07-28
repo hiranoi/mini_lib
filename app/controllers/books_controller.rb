@@ -4,7 +4,7 @@ class BooksController < ApplicationController
 
   def index
     #@books = Book.joins(:user).all
-    @books = Book.joins(:user).page(params[:page])
+    @books = Book.joins(:user).order('id DESC').page(params[:page])
   end
 
   def new

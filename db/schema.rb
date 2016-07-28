@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160621143802) do
+ActiveRecord::Schema.define(version: 20160722013907) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(version: 20160621143802) do
   create_table "articles", force: :cascade do |t|
     t.string   "title"
     t.string   "url"
-    t.string   "user_id"
+    t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -59,10 +59,11 @@ ActiveRecord::Schema.define(version: 20160621143802) do
     t.string   "title"
     t.string   "author"
     t.string   "publisher"
-    t.integer  "isbn",       limit: 8
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.integer  "isbn",           limit: 8
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
     t.string   "owner"
+    t.integer  "comments_count"
   end
 
   create_table "comments", force: :cascade do |t|

@@ -4,7 +4,7 @@ class BooksController < ApplicationController
 
   def index
     #@books = Book.joins(:user).all
-    @books = Book.joins(:user).page(params[:page])
+    @books = Book.joins(:user).order('id DESC').page(params[:page])
   end
 
   def new
@@ -17,7 +17,10 @@ class BooksController < ApplicationController
 
   def create
     @book = Book.new(book_params)
+    user = User.find(current_user.id)
+
     @book.user_id = current_user.id
+    @book.owner = user.email
 
     inquiry = Book.inquiry_api(@book.isbn)
     @book.title = inquiry['//rss/channel/item/title'].text
@@ -38,6 +41,7 @@ class BooksController < ApplicationController
 
   def show
     @book = Book.joins(:user).find(params[:id])
+    @comments = Comment.joins(:book, :user).where(book_id: params[:id])
     #@users = User.all
   end
 
@@ -53,7 +57,7 @@ class BooksController < ApplicationController
   def update
     respond_to do |format|
       if @book.update(book_params)
-        format.html { redirect_to @book, notice: 'Book was successfully updated.' }
+        format.html { redirect_to @book, notice: '返却処理が完了しました。' }
         format.json { render :show, status: :ok, location: @book }
       else
         format.html { render :edit }
@@ -75,7 +79,15 @@ class BooksController < ApplicationController
   def rent
     book = Book.find(params[:id])
     book.user_id = current_user.id
-    if book.save
+
+    # 貸し出し履歴の保存
+    rent_history = RentHistory.new
+    user = User.find(current_user.id)
+    rent_history.book = book.title
+    rent_history.name = user.email
+    
+
+    if book.save && rent_history.save
       redirect_to book_path, notice: '貸出処理が完了しました。'
       #format.json { render :show, status: :created, location: @book }
     else

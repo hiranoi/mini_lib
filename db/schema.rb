@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160514130828) do
+ActiveRecord::Schema.define(version: 20160722013907) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -46,14 +46,39 @@ ActiveRecord::Schema.define(version: 20160514130828) do
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
 
+  create_table "articles", force: :cascade do |t|
+    t.string   "title"
+    t.string   "url"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "books", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "title"
     t.string   "author"
     t.string   "publisher"
-    t.integer  "isbn",       limit: 8
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.integer  "isbn",           limit: 8
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.string   "owner"
+    t.integer  "comments_count"
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "book_id"
+    t.text     "comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "rent_histories", force: :cascade do |t|
+    t.string   "name"
+    t.string   "book"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

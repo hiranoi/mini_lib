@@ -1,5 +1,6 @@
 class Book < ActiveRecord::Base
   belongs_to :user
+  has_many :comments
 
   validates :isbn, length: { maximum: 13 }
 

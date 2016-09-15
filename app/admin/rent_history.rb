@@ -1,26 +1,9 @@
-ActiveAdmin.register Book do
-permit_params :title,:publisher,:isbn, :owner, :comments_count
+ActiveAdmin.register RentHistory do
 
-index do
-  selectable_column
-  id_column
-  column :title
-  column :author
-  column :publisher
-  column :isbn
-  column :owner
-  column :comments_count
-  actions
+permit_params do
+   permitted = [:name,:book]
 end
 
-form do |f|
-  f.inputs "Books Details" do
-    f.input :user_id
-    f.input :owner
-    f.input :comments_count
-  end
-  f.actions
-end
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #

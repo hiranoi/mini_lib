@@ -21,11 +21,8 @@ class BooksController < ApplicationController
 
     @book.user_id = current_user.id
     @book.owner = user.email
-
-    inquiry = Book.inquiry_api(@book.isbn)
-    @book.title = inquiry['//rss/channel/item/title'].text
-    @book.author = inquiry['//rss/channel/item/author'].text.chop
-    @book.publisher = inquiry['//rss/channel/item/dc:publisher'].text
+    # 国会図書館apiへの問い合わせ結果を格納
+    @book = Book.inquiry_api(@book)
 
     if @book.save
       redirect_to new_book_path, notice: '図書を登録しました。'
@@ -35,8 +32,9 @@ class BooksController < ApplicationController
       #format.json { render json: @book.errors, status: :unprocessable_entity }
     end
 
-  rescue
-    redirect_to new_book_path, alert: :unprocessable_entity
+  rescue => e
+    logger.debug e
+    redirect_to new_book_path, alert: '登録に失敗しました。'
   end
 
   def show

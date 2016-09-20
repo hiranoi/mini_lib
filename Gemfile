@@ -37,6 +37,9 @@ gem 'kaminari'
 
 gem 'coffee-script-source', '1.8.0'
 
+# 33_isbn_varidation
+gem 'faraday'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

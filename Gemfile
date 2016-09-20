@@ -37,7 +37,7 @@ gem 'kaminari'
 
 gem 'coffee-script-source', '1.8.0'
 
-# 33_isbn_varidation
+# ISBNのバリデーションが出来ていない(33_isbn_varidation)
 gem 'faraday'
 
 # Use ActiveModel has_secure_password

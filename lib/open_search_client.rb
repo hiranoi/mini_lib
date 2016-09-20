@@ -1,4 +1,4 @@
-require "faraday"
+require 'faraday'
 require 'rexml/document'
 
 # open_search_client.rb

@@ -5,7 +5,6 @@ class Book < ActiveRecord::Base
   validates :isbn, length: { maximum: 13 }
 
   def self.inquiry_api(book)
-    #if isbn_validate(book.isbn)
     unless book.isbn.to_s.length == 10 || book.isbn.to_s.length == 13
       return nil
     end
@@ -17,7 +16,7 @@ class Book < ActiveRecord::Base
     book.author    = res_xml['//rss/channel/item/author'].text.chop
     book.publisher = res_xml['//rss/channel/item/dc:publisher'].text
 
-    # 次巻があればtitleに追加する
+    # 34_add_series_to_book
     if res.elements['//rss/channel/item/dcndl:volume'] != nil
       book.title += + " " + res.elements['//rss/channel/item/dcndl:volume'].text
     end

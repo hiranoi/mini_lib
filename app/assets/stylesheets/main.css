@@ -1566,7 +1566,7 @@
 	}
 
 	body, input, select, textarea {
-		color: rgba(255, 255, 255, 0.75);
+		color: #000000
 		font-family: "Roboto", Helvetica, sans-serif;
 		font-size: 15pt;
 		font-weight: 100;
@@ -3920,7 +3920,6 @@
 
 			body, input, select, textarea {
 				font-size: 12pt;
-				color: #000000;
 			}
 
 		/* List */

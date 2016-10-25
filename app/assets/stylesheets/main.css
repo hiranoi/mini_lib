@@ -3773,11 +3773,11 @@
 
 				#titleBar .toggle {
 					text-decoration: none;
-					height: 60px;
+					height: 40px;
 					left: 0;
 					position: absolute;
 					top: 0;
-					width: 90px;
+					width: 50px;
 					outline: 0;
 					border: 0;
 				}

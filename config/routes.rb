@@ -15,6 +15,9 @@ Rails.application.routes.draw do
     resources :comments
   end
 
+  # スライド一覧
+  get 'slides' => 'slide#index'
+
   # 貸出履歴
   get 'rent_history' => 'rent_history#index'
 

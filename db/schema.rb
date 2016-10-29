@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160722013907) do
+ActiveRecord::Schema.define(version: 20161029035804) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -79,6 +79,16 @@ ActiveRecord::Schema.define(version: 20160722013907) do
     t.string   "book"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "slides", force: :cascade do |t|
+    t.string   "slide_id"
+    t.string   "title"
+    t.string   "url"
+    t.string   "thumbnail_url"
+    t.string   "embed"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   create_table "users", force: :cascade do |t|

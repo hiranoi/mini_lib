@@ -58,6 +58,7 @@
 
 <%= button_to 'コメントする', new_book_comment_path(@book), :method => :get, :class => 'btn btn-primary' %>
 
+<% if @comments.length != 0 %>
 
 <table class="table">
   <thead>
@@ -83,13 +84,18 @@
   </tbody>
 </table>
 
-<h5>この書籍に関連したスライド</h5>
+<% end %>
 
+<% if @slides.length != 0 %>
+
+<h3>この書籍に関連したスライド</h3>
 <ul>
   <% @slides.each do |slide| %>
   <li><a href=<%= slide.url %>> <%= slide.title %></a></li>
   <% end %>
 </ul>
+
+<% end %>
 
 <%#= button_to "削除", { :action => "rent", :id => @book.id }, :confirm => "本当に削除しますか?" %>
 <%#if current_user.id == @book.user_id %>

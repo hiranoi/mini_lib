@@ -29,19 +29,18 @@ class Slide < ActiveRecord::Base
   def self.inquiry_slide_list(word)
     slides = Array.new
 
+    # スライド検索API
     res = OpenSearchClient.new.get_slideshow_by_word(word)
-    res_xml = res.elements
+    res_hash = Hash.from_xml(res.elements['//Slideshows'].to_s)
+    slideshows_hash = res_hash.fetch("Slideshows")
 
-    h1 = Hash.from_xml(res_xml['//Slideshows'].to_s)
-    h2 = h1.fetch("Slideshows")
-
-    if h2.fetch("Meta").fetch("TotalResults").to_i == 0
+    # 0件チェック
+    if slideshows_hash.fetch("Meta").fetch("TotalResults").to_i == 0
         return slides
     end
 
-    h3 = h2.fetch("Slideshow")
-
-    h3.each do |slide|
+    # スライド情報の詰め替え
+    slideshows_hash.fetch("Slideshow").each do |slide|
       slides.push(parseFromHash(slide))
     end
 

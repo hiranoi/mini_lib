@@ -27,13 +27,19 @@ class Slide < ActiveRecord::Base
   end
 
   def self.inquiry_slide_list(word)
+    slides = Array.new
+
     res = OpenSearchClient.new.get_slideshow_by_word(word)
     res_xml = res.elements
 
     h1 = Hash.from_xml(res_xml['//Slideshows'].to_s)
     h2 = h1.fetch("Slideshows")
+
+    if h2.fetch("Meta").fetch("TotalResults").to_i == 0
+        return slides
+    end
+
     h3 = h2.fetch("Slideshow")
-    slides = Array.new
 
     h3.each do |slide|
       slides.push(parseFromHash(slide))

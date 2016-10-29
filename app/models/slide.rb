@@ -1,3 +1,5 @@
+require 'nokogiri'
+
 class Slide < ActiveRecord::Base
 
   def self.inquiry_slide_detail(url)
@@ -25,14 +27,31 @@ class Slide < ActiveRecord::Base
   end
 
   def self.inquiry_slide_list(word)
-    
     res = OpenSearchClient.new.get_slideshow_by_word(word)
     res_xml = res.elements
 
-    logger.debug("**** res_xml start ****")
-    logger.debug(res_xml['//Meta/Query'].text)
-    logger.debug(res_xml['//Meta/NumResults'].text)
-    logger.debug("**** res_xml end ****")
+    h1 = Hash.from_xml(res_xml['//Slideshows'].to_s)
+    h2 = h1.fetch("Slideshows")
+    h3 = h2.fetch("Slideshow")
+    slides = Array.new
+
+    h3.each do |slide|
+      slides.push(parseFromHash(slide))
+    end
+
+    slides
+  end
+
+  def self.parseFromHash(hash)
+    slide = Slide.new()
+    
+    slide.slide_id = hash.fetch("ID")
+    slide.title = hash.fetch("Title")
+    slide.url = hash.fetch("URL")
+    slide.thumbnail_url = hash.fetch("ThumbnailURL")
+    slide.embed = hash.fetch("Embed")
+
+    slide
   end
 
 end

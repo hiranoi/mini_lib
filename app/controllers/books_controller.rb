@@ -41,6 +41,8 @@ class BooksController < ApplicationController
     @book = Book.joins(:user).find(params[:id])
     @comments = Comment.joins(:book, :user).where(book_id: params[:id])
     #@users = User.all
+
+    @slides = Slide.inquiry_slide_list('スクラム')
   end
 
   def destroy

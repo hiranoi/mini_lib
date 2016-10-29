@@ -83,6 +83,14 @@
   </tbody>
 </table>
 
+<h5>この書籍に関連したスライド</h5>
+
+<ul>
+  <% @slides.each do |slide| %>
+  <li><a href=<%= slide.url %>> <%= slide.title %></a></li>
+  <% end %>
+</ul>
+
 <%#= button_to "削除", { :action => "rent", :id => @book.id }, :confirm => "本当に削除しますか?" %>
 <%#if current_user.id == @book.user_id %>
   <%#= link_to 'Destroy', @book, method: :delete,  %>

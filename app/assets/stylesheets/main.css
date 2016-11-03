@@ -1597,11 +1597,11 @@
 	}
 
 	p {
-		margin: 0 0 2em 0;
+		margin: 0 1em;
 		color: #000000;
 	}
 
-	h1, h2, h3, h4, h5, h6 {
+	h1, h2, h3, h4, h6 {
 		color: #000000;
 		font-weight: 300;
 		line-height: 1em;
@@ -1630,7 +1630,11 @@
 	}
 
 	h5 {
-		font-size: 0.9em;
+		color: #e44c65;
+		font-weight: 300;
+		line-height: 1em;
+		margin:0;
+		font-size: 0.8em;
 		line-height: 1.5em;
 	}
 

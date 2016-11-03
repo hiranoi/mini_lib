@@ -11,6 +11,8 @@
 	</div>
 </div>
 
+<% if !@slides.empty? %>
+
 <% @slides.each do |slide| %>
 
 <div class="panel">
@@ -21,11 +23,14 @@
 		<h5>タイトル</h5>
 			<p><%= slide.title %></p>
 		<h5>推薦者</h5>
-			<p>あああああああああああああああああああ</p>
-		<h5>コメント</h5>
-			<p>コメントあああああああああああああああ</p>
+			<p><%= slide.recommend_user %></p>
+			<br>
+		<h5>推薦コメント</h5>
+			<p><%= slide.recommend_comment %></p>
 	</div>
 </div>
+
+<% end %>
 
 <% end %>
 </ul>

@@ -12,6 +12,8 @@ class SlidesController < ApplicationController
   def create
     url = params[:slide][:url]
   	@slide = Slide.inquiry_slide_detail(url)
+    @slide.recommend_user = params[:slide][:recommend_user]
+    @slide.recommend_comment =  params[:slide][:recommend_comment]
 
     if @slide.save
         redirect_to new_slide_path, notice: 'スライドをを登録しました。'

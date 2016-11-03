@@ -26,4 +26,11 @@ class SlidesController < ApplicationController
     end
   end
 
+  def destroy
+    @slide = Slide.find(params[:id])
+
+    @slide.destroy
+    redirect_to slides_path, notice: 'スライドを削除しました。'
+  end
+
 end

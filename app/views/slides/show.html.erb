@@ -20,6 +20,8 @@
 <br>
 <br>
 <%= link_to '戻る', slides_path %>
-
+<br>
+<br>
+<%= link_to 'このスライドを削除する', @slide, method: :delete, data: { confirm: '削除してよろしいですか？' } %>
 </div>
 </div>

@@ -2,7 +2,7 @@ class SlidesController < ApplicationController
   before_action :authenticate_user!
   
   def index
-  	@slides = Slide.all
+  	@slides = Slide.all.order("created_at desc")
   end
 
   def show

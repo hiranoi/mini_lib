@@ -1,10 +1,33 @@
+<div class="contianer">
+<div class="wrapper style1">
 
-<h1>スライド一覧</h1>
-<%= link_to 'スライドを追加する', new_slide_path %>
+<header class="major">
+	<h1>スライド一覧</h1>
+</header>
 
+<div class="panel">
+	<div class="panel-body">
+		<button class="btn-primary" onClick="location.href='/slides/new'">新しいスライドを追加する</button>
+	</div>
+</div>
 
-<ul>
 <% @slides.each do |slide| %>
-	<li><a href=<%= slide.url %>><img src=<%= slide.thumbnail_url %> alt=<%= slide.title %>></a></li>
+
+<div class="panel">
+	<div class="panel-body">
+		<a href=<%= slide.url %>>
+			<img src=<%= slide.thumbnail_url %> alt=<%= slide.title %> align="right">
+		</a>
+		<h5>タイトル</h5>
+			<p><%= slide.title %></p>
+		<h5>推薦者</h5>
+			<p>あああああああああああああああああああ</p>
+		<h5>コメント</h5>
+			<p>コメントあああああああああああああああ</p>
+	</div>
+</div>
+
 <% end %>
 </ul>
+</div>
+</div>

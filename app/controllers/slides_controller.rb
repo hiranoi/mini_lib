@@ -2,18 +2,14 @@ class SlidesController < ApplicationController
   before_action :authenticate_user!
   
   def index
-  	@slide = Slide.inquiry_slide_detail('http://www.slideshare.net/Ryuzee/scrum-8048905')
-
-
+  	@slides = Slide.all
   end
-
 
   def new
 	   @slide = Slide.new
   end
 
   def create
-
     url = params[:slide][:url]
   	@slide = Slide.inquiry_slide_detail(url)
 

@@ -3,5 +3,8 @@
 <%= link_to 'スライドを追加する', new_slide_path %>
 
 
-
-<%= @slide.embed.html_safe %>
+<ul>
+<% @slides.each do |slide| %>
+	<li><a href=<%= slide.url %>><img src=<%= slide.thumbnail_url %> alt=<%= slide.title %>></a></li>
+<% end %>
+</ul>

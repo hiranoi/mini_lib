@@ -40,25 +40,6 @@ class BooksController < ApplicationController
   def show
     @book = Book.joins(:user).find(params[:id])
     @comments = Comment.joins(:book, :user).where(book_id: params[:id])
-    #@users = User.all
-
-    search_word = "スクラム"
-
-    mecab = Natto::MeCab.new
-    logger.debug("********")
-    mecab.parse(@book.title ) do |n|
-        
-        word = n.feature.split(",")
-        if word[0] == "名詞"
-          search_word = n.surface
-          logger.debug(search_word)
-          break;
-        end
-
-    end
-    logger.debug("********")
-
-    @slides = Slide.inquiry_slide_list(search_word)
   end
 
   def destroy

@@ -33,4 +33,33 @@ class SlidesController < ApplicationController
     redirect_to slides_path, notice: 'スライドを削除しました。'
   end
 
+  def recommend
+    
+    search_word = "スクラム"
+    title = params[:title]
+
+    if title.nil? || title.empty?
+      render :json => nil
+      return
+    end
+
+    mecab = Natto::MeCab.new
+    logger.debug("********")
+    mecab.parse(params[:title]) do |n|
+        
+        word = n.feature.split(",")
+        if word[0] == "名詞"
+          search_word = n.surface
+          logger.debug(search_word)
+          break;
+        end
+
+    end
+    logger.debug("********")
+
+    @slides = Slide.inquiry_slide_list(search_word)
+
+    render :json => @slides
+  end
+
 end

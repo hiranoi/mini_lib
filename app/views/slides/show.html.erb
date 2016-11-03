@@ -23,5 +23,24 @@
 <br>
 <br>
 <%= link_to 'このスライドを削除する', @slide, method: :delete, data: { confirm: '削除してよろしいですか？' } %>
+<br>
+<br>
+<br>
+<h3>関連したスライド</h3>
+<ul id="recommend"></ul>
 </div>
 </div>
+<script type="text/javascript">
+$.ajax({
+  type: "GET",
+  url: "/recommendSlides?title=<%= @slide.title %>",
+  dataType: "json",
+
+  }).done(function(data, status, xhr) {
+		var dataArray = data;
+		$.each(dataArray, function(i){
+			$("#recommend")
+			.append("<li><a href="+dataArray[i].url+">"+dataArray[i].title+"</a></li>");
+		});
+});
+</script>

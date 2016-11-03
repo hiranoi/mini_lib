@@ -59,7 +59,7 @@ class SlidesController < ApplicationController
 
     @slides = Slide.inquiry_slide_list(search_word)
 
-    render :json => @slides
+    render :json => @slides[0,7]
   end
 
 end

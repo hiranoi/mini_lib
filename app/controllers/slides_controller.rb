@@ -5,6 +5,10 @@ class SlidesController < ApplicationController
   	@slides = Slide.all
   end
 
+  def show
+    @slide = Slide.find(params[:id])
+  end
+
   def new
 	   @slide = Slide.new
   end

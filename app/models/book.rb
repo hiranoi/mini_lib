@@ -4,14 +4,23 @@ class Book < ActiveRecord::Base
 
   validates :isbn, length: { maximum: 13 }
 
-  def self.inquiry_api(isbn)
-    require 'net/http'
-    require 'uri'
-    require 'rexml/document'
+  def self.inquiry_api(book)
+    unless book.isbn.to_s.length == 10 || book.isbn.to_s.length == 13
+      return nil
+    end
+    
+    res = OpenSearchClient.new.get_book_info_by_isbn(book.isbn)
+    res_xml = res.elements
 
-    base = 'http://iss.ndl.go.jp/api/opensearch?isbn='
-    url = URI.parse(base + isbn.to_s)
-    res = Net::HTTP.new(url.host, url.port).get(url)
-    res_xml = REXML::Document.new(res.body).elements
+    book.title     = res_xml['//rss/channel/item/title'].text
+    book.author    = res_xml['//rss/channel/item/author'].text.chop
+    book.publisher = res_xml['//rss/channel/item/dc:publisher'].text
+
+    # 次巻がある場合はtitleに追加する
+    if res.elements['//rss/channel/item/dcndl:volume'] != nil
+      book.title += " " + res.elements['//rss/channel/item/dcndl:volume'].text
+    end
+
+    book
   end
 end

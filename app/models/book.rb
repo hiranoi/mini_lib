@@ -18,7 +18,7 @@ class Book < ActiveRecord::Base
 
     # 次巻がある場合はtitleに追加する
     if res.elements['//rss/channel/item/dcndl:volume'] != nil
-      book.title + " " + res.elements['//rss/channel/item/dcndl:volume'].text
+      book.title += " " + res.elements['//rss/channel/item/dcndl:volume'].text
     end
 
     book

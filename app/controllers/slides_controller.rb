@@ -35,27 +35,9 @@ class SlidesController < ApplicationController
 
   def recommend
     
+    # もともと形態素解析をいれていたがmecabの環境設定が大変なので一旦固定で
+    # ゆくゆくはタグか何かで抽出できるとよい
     search_word = "スクラム"
-    title = params[:title]
-
-    if title.nil? || title.empty?
-      render :json => nil
-      return
-    end
-
-    mecab = Natto::MeCab.new
-    logger.debug("********")
-    mecab.parse(params[:title]) do |n|
-        
-        word = n.feature.split(",")
-        if word[0] == "名詞"
-          search_word = n.surface
-          logger.debug(search_word)
-          break;
-        end
-
-    end
-    logger.debug("********")
 
     @slides = Slide.inquiry_slide_list(search_word)
 

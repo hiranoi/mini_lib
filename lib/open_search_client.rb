@@ -14,10 +14,10 @@ class OpenSearchClient
   def get_slideshow_by_url(url)
 
     now_time = Time.now.to_i
-    hash = Digest::SHA1.hexdigest("#{SLIDESHARE_SECRET_KEY}#{now_time}")
+    hash = Digest::SHA1.hexdigest("#{ENV['SLIDESHARE_SECRET_KEY']}#{now_time}")
 
     pram = {
-      :api_key => SLIDESHARE_API_KEY,
+      :api_key => ENV['SLIDESHARE_API_KEY'],
       :ts => now_time,
       :hash => hash,
       :slideshow_url => url
@@ -32,10 +32,10 @@ class OpenSearchClient
     api_key = "BXUZhtwB"
     secret_key = "zIZsdVoU"
     now_time = Time.now.to_i
-    hash = Digest::SHA1.hexdigest("#{SLIDESHARE_SECRET_KEY}#{now_time}")
+    hash = Digest::SHA1.hexdigest("#{ENV['SLIDESHARE_SECRET_KEY']}#{now_time}")
 
     pram = {
-      :api_key => SLIDESHARE_API_KEY,
+      :api_key => ENV['SLIDESHARE_API_KEY'],
       :ts => now_time,
       :hash => hash,
       :q => word,

@@ -33,7 +33,7 @@ class BooksController < ApplicationController
     end
 
   rescue => e
-    logger.fatal e
+    logger.info e
     redirect_to new_book_path, alert: '登録に失敗しました。'
   end
 

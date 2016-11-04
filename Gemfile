@@ -6,7 +6,7 @@ gem 'rails', '4.2.5.1'
 # Use sqlite3 as the database for Active Record
 #gem 'sqlite3', :group => [:development, :test]
 #gem 'pg', group: :production
-gem 'rails_12factor', group: :production
+#gem 'rails_12factor', group: :production
 
 gem 'sqlite3', groups: %w(test development), require: false
 gem 'pg', groups: %w(production), require: false

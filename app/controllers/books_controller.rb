@@ -1,10 +1,11 @@
 class BooksController < ApplicationController
   before_action :authenticate_user!
   before_action :set_book, only: [:edit, :update, :destroy]
+  before_filter :set_search
 
   def index
     #@books = Book.joins(:user).all
-    @books = Book.joins(:user).order('id DESC').page(params[:page])
+    @books = @q.result(distinct: true).joins(:user).order('id DESC').page(params[:page])
   end
 
   def new
@@ -101,5 +102,9 @@ class BooksController < ApplicationController
 
   def book_params
     params.require(:book).permit(:user_id, :title, :author, :publisher, :isbn)
+  end
+
+  def set_search
+   @q = Book.search(params[:q])
   end
 end

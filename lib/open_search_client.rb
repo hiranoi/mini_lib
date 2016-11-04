@@ -5,8 +5,6 @@ require 'rexml/document'
 class OpenSearchClient
 
   SLIDESHARE_DOMAIN = "https://www.slideshare.net"
-  SLIDESHARE_API_KEY = "BXUZhtwB"
-  SLIDESHARE_SECRET_KEY = "zIZsdVoU"
 
   def get_book_info_by_isbn(isbn)
     response = get('http://iss.ndl.go.jp','/api/opensearch', {:isbn => isbn})

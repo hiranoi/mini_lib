@@ -1,52 +1,35 @@
+<header class="major">
+  <h1><%= @book.title %></h1>
+</header>
 
+<div class="panel">
+  <div class="panel-body">
 
-<p>
-  <strong>図書名:</strong><br>
-  <%= @book.title %>
-</p>
+    <h5>著者名</h5>
+    <p><%= @book.author %></p>
+    <h5>出版社</h5>
+    <p><%= @book.publisher %></p>
+    <h5>所有者</h5>
+    <p><%= @book.owner %></p>
 
-<p>
-  <strong>著者名:</strong><br>
-  <%= @book.author %>
-</p>
+    <% if @book.user.syoko %>
+      <h5>貸出日</h5>
+      <p>貸出可能(<%= @book.user.place %>)</p>
+      <h5>返却期限</h5>
+      <p>-</p>
+      <h5>利用者</h5>
+      <p>-</p>
+    <% else %>
+      <h5>貸出日</h5>
+      <p><%= (@book.updated_at).strftime("%Y-%m-%d") %></p>
+      <h5>返却期限</h5>
+      <p><%= (@book.updated_at + 7.days).strftime("%Y-%m-%d") %></p>
+      <h5>利用者</h5>
+      <p><%= @book.user.email %></p>
+    <% end %>
 
-<p>
-  <strong>出版社:</strong><br>
-  <%= @book.publisher %>
-</p>
-
-<% if @book.user.syoko %>
-  <p>
-    <strong>貸出日:</strong><br>
-    貸出可能(<%= @book.user.place %>)
-  </p>
-  <p>
-    <strong>返却期限：</strong><br>
-    -
-  </p>
-  <p>
-    <strong>利用者：</strong><br>
-    -
-  </p>
-<% else %>
-  <p>
-    <strong>貸出日:</strong><br>
-    <%= (@book.updated_at).strftime("%Y-%m-%d") %>
-  </p>
-  <p>
-    <strong>返却期限：</strong><br>
-    <%= (@book.updated_at + 7.days).strftime("%Y-%m-%d") %>
-  </p>
-  <p>
-    <strong>利用者：</strong><br>
-    <%= @book.user.email %>
-  </p>
-<% end %>
-  <p>
-    <strong>所有者：</strong><br>
-    <%= @book.owner %>
-  </p>
-
+  </div>
+</div>
 
 
 <% if @book.user.syoko %>

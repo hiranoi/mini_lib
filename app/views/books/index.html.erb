@@ -1,11 +1,6 @@
 <%= search_form_for @q do |f| %>
   <%# 検索ボタン %>
-  <%= f.label :owner_cont, "所有者" %>
-  <%= f.search_field :owner_cont %>
-  <%= f.label :title_or_author_or_publisher_cont, "フリーワード" %>
-  <%= f.search_field :title_or_author_or_publisher_cont %>
-
-
+  <%= f.search_field :title_or_author_or_publisher_or_owner_cont, placeholder: '検索' %>
   <%= f.submit %>
 <% end %>
 
@@ -15,6 +10,7 @@
   <thead>
     <tr>
       <!--<th>#</th>-->
+      <th><%= sort_link(@q, :id,'ID') %></th>
       <th>図書名</th>
       <th>貸出日</th>
       <th>返却期限</th>
@@ -25,9 +21,9 @@
   </thead>
 
   <tbody>
-    <% @books.each_with_index do |book, i| %>
+    <% @books.each do |book| %>
       <tr>
-        <!--<td><%= book.id %></td>-->
+        <td><%= book.id %></td>
         <td><%= link_to book.title, book %></td>
 
         <% if book.user.syoko %>

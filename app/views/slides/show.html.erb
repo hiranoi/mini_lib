@@ -1,0 +1,46 @@
+<div class="contianer">
+<div class="wrapper style1">
+
+<header class="major">
+	<h1><%= @slide.title %></h1>
+</header>
+
+<div class="panel">
+	<div class="panel-body">
+		<h5>推薦者</h5>
+			<p><%= @slide.recommend_user %></p>
+		<h5>推薦コメント</h5>
+			<p><%= @slide.recommend_comment %></p>
+	</div>
+</div>
+
+<div align="center">
+	<%= @slide.embed.html_safe %>
+</div>
+<br>
+<br>
+<%= link_to '戻る', slides_path %>
+<br>
+<br>
+<%= link_to 'このスライドを削除する', @slide, method: :delete, data: { confirm: '削除してよろしいですか？' } %>
+<br>
+<br>
+<br>
+<h3>関連したスライド</h3>
+<ul id="recommend"></ul>
+</div>
+</div>
+<script type="text/javascript">
+$.ajax({
+  type: "GET",
+  url: "/recommendSlides?title=<%= @slide.title %>",
+  dataType: "json",
+
+  }).done(function(data, status, xhr) {
+		var dataArray = data;
+		$.each(dataArray, function(i){
+			$("#recommend")
+			.append("<li><a href="+dataArray[i].url+">"+dataArray[i].title+"</a></li>");
+		});
+});
+</script>

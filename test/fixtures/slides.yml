@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  slide_id: MyString
+  title: MyString
+  url: MyString
+  thumbnail_url: MyString
+  embed: MyString
+
+two:
+  slide_id: MyString
+  title: MyString
+  url: MyString
+  thumbnail_url: MyString
+  embed: MyString

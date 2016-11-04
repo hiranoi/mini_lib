@@ -15,6 +15,10 @@ Rails.application.routes.draw do
     resources :comments
   end
 
+  # スライド一覧
+  resources :slides
+  get 'recommendSlides' => 'slides#recommend'
+
   # 貸出履歴
   get 'rent_history' => 'rent_history#index'
 

@@ -58,6 +58,7 @@
 
 <%= button_to 'コメントする', new_book_comment_path(@book), :method => :get, :class => 'btn btn-primary' %>
 
+<% if @comments.length != 0 %>
 
 <table class="table">
   <thead>
@@ -83,6 +84,7 @@
   </tbody>
 </table>
 
+<% end %>
 <%#= button_to "削除", { :action => "rent", :id => @book.id }, :confirm => "本当に削除しますか?" %>
 <%#if current_user.id == @book.user_id %>
   <%#= link_to 'Destroy', @book, method: :delete,  %>

@@ -17,9 +17,9 @@ class Book < ActiveRecord::Base
     book.publisher = res_xml['//rss/channel/item/dc:publisher'].text
 
     # 次巻がある場合はtitleに追加する
-    #if res.elements['//rss/channel/item/dcndl:volume'] != nil
-    #  book.title += + " " + res.elements['//rss/channel/item/dcndl:volume'].text
-    #end
+    if res.elements['//rss/channel/item/dcndl:volume'] != nil
+      book.title + " " + res.elements['//rss/channel/item/dcndl:volume'].text
+    end
 
     book
   end

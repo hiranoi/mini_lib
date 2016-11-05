@@ -1,27 +1,24 @@
 <%= search_form_for @q do |f| %>
-  <%# 検索ボタン %>
-  <%= f.search_field :title_or_author_or_publisher_or_owner_cont, placeholder: '検索' %>
-  <%= f.submit %>
+フリーワード検索 <%= f.search_field :title_or_author_or_publisher_or_owner_cont, placeholder: '検索' %>
+<%= f.submit %>
 <% end %>
-
-<%= paginate @books %>
-
-<%= sort_link(@q, :id,'ID') %>：
-<%= sort_link(@q, :comments_count,'コメント数') %>
+並べ替え | <%= sort_link(@q, :id,'ID順') %> | <%= sort_link(@q, :comments_count,'コメント数順') %> |
 
 <% @books.each do |book| %>
-
-<div class="panel">
+<div class="panel panel-default">
+  <div class="panel-heading">
+  <h4><%= link_to book.title, book %></h4>
+  </div>
   <div class="panel-body">
-    <h4><%= link_to book.title, book %></h4>
-      <% if book.user.syoko %>
-        <h6>貸出可能(<%=book.user.place %>)</h6>
-      <% else %>
-        <h6>返却期限：<%= (book.updated_at + 7.days).strftime("%Y-%m-%d") %></h6>
-        <h6>利用者：<%= book.user.email %></h6>
-      <% end %>
+    <% if book.user.syoko %>
+      <h6>貸出可能(<%=book.user.place %>)</h6>
+    <% else %>
+      <h6>返却期限：<%= (book.updated_at + 7.days).strftime("%Y-%m-%d") %></h6>
+      <h6>利用者：<%= book.user.email %></h6>
+    <% end %>
     <h5>コメント数：<%= book.comments_count %></h5>
   </div>
 </div>
 
 <% end %>
+<%= paginate @books %>

@@ -34,39 +34,24 @@
 
 <% if @book.user.syoko %>
   <%= button_to '借ります！', rent_book_path(@book),
-  :method => :patch, data: { confirm: '貸出処理を行いますか？' }, :class => 'btn btn-primary' %>
+  :method => :patch, data: { confirm: '貸出処理を行いますか？' }, :class => 'btn btn-primary' %><br>
 <% elsif @book.user_id == current_user.id %>
-  <%= button_to '返します！', edit_book_path(@book), :method => :get, :class => 'btn btn-primary' %>
+  <%= button_to '返します！', edit_book_path(@book), :method => :get, :class => 'btn btn-primary' %><br>
 <% end %>
 
-<%= button_to 'コメントする', new_book_comment_path(@book), :method => :get, :class => 'btn btn-primary' %>
+<%= button_to 'コメントする', new_book_comment_path(@book), :method => :get, :class => 'btn btn-primary' %><br>
 
 <% if @comments.length != 0 %>
+  <% @comments.each do |c| %>
 
-<table class="table">
-  <thead>
-    <tr>
-      <!--<th>#</th>-->
-      <th>コメント</th>
-      <th>ユーザ名</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-      <% @comments.each do |c| %>
-        <tr>
-        <% if c.comment.length < 30 then %>
-          <td><%= link_to c.comment, comment_path(c) %></td>
-        <% else %>
-          <td><%= link_to c.comment.slice(0,30) + '...', comment_path(c) %></td>
-        <% end %>
-        <td><%= c.user.email %></td>
-        </tr>
-      <% end %>
-  </tbody>
-</table>
-
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <h6>投稿日時：<%= (c.created_at).strftime("%Y-%m-%d %H:%M") %></h6>
+      <h6>投稿者：<%= c.user.email %></h6>
+      <div class="well well-sm"><h6><%= c.comment %></h6></div>
+    </div>
+  </div>
+  <% end %>
 <% end %>
 <%#= button_to "削除", { :action => "rent", :id => @book.id }, :confirm => "本当に削除しますか?" %>
 <%#if current_user.id == @book.user_id %>

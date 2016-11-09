@@ -9,7 +9,7 @@ gem 'rails', '4.2.5.1'
 #gem 'rails_12factor', group: :production
 
 gem 'sqlite3', groups: %w(test development), require: false
-gem 'pg', groups: %w(production), require: false
+gem 'pg', groups: %w(production staging), require: false
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -45,6 +45,8 @@ gem 'faraday'
 gem 'dotenv-rails'
 
 gem "ransack", '~> 1.6.3'
+
+gem 'google-analytics-rails'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

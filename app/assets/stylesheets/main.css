@@ -1578,7 +1578,7 @@
 		-ms-transition: border-color 0.2s ease-in-out, color 0.2s ease-in-out;
 		transition: border-color 0.2s ease-in-out, color 0.2s ease-in-out;
 		border-bottom: dotted 1px;
-		color: #ffffff;
+		color: #000000;
 		text-decoration: none;
 	}
 
@@ -1631,13 +1631,14 @@
 	h4 {
 		font-size: 1.1em;
 		line-height: 1.5em;
+		margin: 0.5em 0 0.5em 0;
 	}
 
 	h5 {
 		color: #e44c65;
 		font-weight: 300;
 		line-height: 1em;
-		margin:0;
+		margin: 0 0 0.5em 0;
 		font-size: 0.8em;
 		line-height: 1.5em;
 	}
@@ -1645,6 +1646,7 @@
 	h6 {
 		font-size: 0.7em;
 		line-height: 1.5em;
+		margin: 0.5em 0 0.5em 0;
 	}
 
 	sub {
@@ -2156,7 +2158,7 @@
 /* Form */
 
 	form {
-		margin: 0 0 2em 0;
+		margin: 0 0 0 0;
 	}
 
 	label {
@@ -3696,7 +3698,7 @@
 		/* Wrapper */
 
 			.wrapper {
-				padding: 3.25em 1.5em 1.25em 1.5em;
+				padding: 3.25em 0em 1.25em 0em;
 			}
 
 		/* Header */
@@ -3981,7 +3983,7 @@
 		/* Wrapper */
 
 			.wrapper {
-				padding: 3em 1.25em 1em 1.25em;
+				padding: 3em 0em 1em 0em;
 			}
 
 		/* Banner */

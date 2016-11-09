@@ -40,7 +40,7 @@ class BooksController < ApplicationController
 
   def show
     @book = Book.joins(:user).find(params[:id])
-    @comments = Comment.joins(:book, :user).where(book_id: params[:id])
+    @comments = Comment.joins(:book, :user).where(book_id: params[:id]).order("created_at desc")
   end
 
   def destroy

@@ -1,21 +1,11 @@
-<div class="contianer">
-<div class="wrapper style1">
-
-<header class="major">
-	<h1>スライド一覧</h1>
-</header>
-
-<div class="panel">
-	<div class="panel-body">
-		<button class="btn-primary" onClick="location.href='/slides/new'">新しいスライドを追加する</button>
-	</div>
-</div>
-
+<button class="btn-primary" onClick="location.href='/slides/new'">新しいスライドを追加する</button>
+<br>
+<br>
 <% if !@slides.empty? %>
 
 <% @slides.each do |slide| %>
 
-<div class="panel">
+<div class="panel panel-default">
 	<div class="panel-body">
 		<a href="/slides/<%= slide.id %>">
 			<img src=<%= slide.thumbnail_url %> alt=<%= slide.title %> align="right">
@@ -34,5 +24,3 @@
 
 <% end %>
 </ul>
-</div>
-</div>

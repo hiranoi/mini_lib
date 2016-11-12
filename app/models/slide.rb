@@ -1,5 +1,3 @@
-require 'nokogiri'
-
 class Slide < ActiveRecord::Base
 
   def self.inquiry_slide_detail(url)

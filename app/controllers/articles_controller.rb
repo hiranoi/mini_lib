@@ -6,6 +6,10 @@ class ArticlesController < ApplicationController
   # GET /articles.json
   def index
     @articles = Article.joins(:user).order('id DESC').page(params[:page])
+
+    @articles.collect! do |article|
+      Article.get_url_info(article)
+    end
   end
 
   # GET /articles/1

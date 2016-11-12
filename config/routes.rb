@@ -1,13 +1,15 @@
 Rails.application.routes.draw do
 
-  # ようこそ
+  # TOP
   root 'welcome#index'
 
-  # 記事一覧
+  # 記事
   resources :articles
+
+  # コメント（画面内遷移なし）
   resources :comments
 
-  # 図書一覧
+  # 図書
   resources :books, shallow: true do
     member do
       patch 'rent'
@@ -15,7 +17,7 @@ Rails.application.routes.draw do
     resources :comments
   end
 
-  # スライド一覧
+  # スライド
   resources :slides
   get 'recommendSlides' => 'slides#recommend'
 

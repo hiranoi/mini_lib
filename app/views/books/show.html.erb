@@ -46,7 +46,7 @@
 
   <div class="panel panel-default">
     <div class="panel-body">
-      <h6>投稿日時：<%= (c.created_at).strftime("%Y-%m-%d %H:%M") %></h6>
+      <h6>投稿日時：<%= (c.created_at).strftime("%Y/%m/%d %H:%M") %></h6>
       <h6>投稿者：<%= c.user.email %></h6>
       <div class="well well-sm"><h6><%= c.comment %></h6></div>
     </div>

@@ -5,7 +5,6 @@ Rails.application.routes.draw do
 
   # 記事
   resources :articles
-  get 'getThumbnail' => 'articles#getThumbnail'
 
   # コメント（画面内遷移なし）
   resources :comments

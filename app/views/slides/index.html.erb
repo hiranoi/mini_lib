@@ -6,17 +6,16 @@
 <% @slides.each do |slide| %>
 
 <div class="panel panel-default">
-	<div class="panel-body">
+	<div class="panel-heading">
+	  	<h4><%= slide.title %></h4>
+	</div>
+	<div class="panel-body" align="center">
 		<a href="/slides/<%= slide.id %>">
-			<img src=<%= slide.thumbnail_url %> alt=<%= slide.title %> align="right">
+			<img src=<%= slide.thumbnail_url %> alt=<%= slide.title %>>
 		</a>
-		<h5>タイトル</h5>
-			<p><%= slide.title %></p>
-		<h5>推薦者</h5>
-			<p><%= slide.recommend_user %></p>
-			<br>
-		<h5>推薦コメント</h5>
-			<p><%= slide.recommend_comment %></p>
+		<div align="right">
+			<h4>推薦者：<%= slide.recommend_user %></h4>
+		</div>
 	</div>
 </div>
 

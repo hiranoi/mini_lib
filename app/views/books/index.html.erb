@@ -12,7 +12,7 @@
   <div class="panel-body">
     <% if book.user.syoko %>
       <span class="label label-info">貸出可能</span>
-      <h5>場所：<%=book.user.place %></h6>
+      <h6>場所：<%=book.user.place %></h6>
     <% else %>
       <span class="label label-warning">貸出中</span>
       <h6>返却予定：<%= (book.updated_at + 7.days).strftime("%Y/%m/%d") %></h6>

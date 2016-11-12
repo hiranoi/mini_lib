@@ -1,3 +1,5 @@
+
+
 class ArticlesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_article, only: [:show, :edit, :update, :destroy]
@@ -6,6 +8,7 @@ class ArticlesController < ApplicationController
   # GET /articles.json
   def index
     @articles = Article.joins(:user).order('id DESC').page(params[:page])
+    @object = LinkThumbnailer.generate(@articles[0].url)
   end
 
   # GET /articles/1

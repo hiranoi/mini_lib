@@ -8,7 +8,6 @@ class ArticlesController < ApplicationController
   # GET /articles.json
   def index
     @articles = Article.joins(:user).order('id DESC').page(params[:page])
-    @object = LinkThumbnailer.generate(@articles[0].url)
   end
 
   # GET /articles/1
@@ -60,6 +59,13 @@ class ArticlesController < ApplicationController
       format.html { redirect_to articles_url, notice: '記事を削除しました。' }
       format.json { head :no_content }
     end
+  end
+
+  def getThumbnail
+    url = params[:url]
+    object = LinkThumbnailer.generate(url)
+
+    render :json => object.to_json
   end
 
   private

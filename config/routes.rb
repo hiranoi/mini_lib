@@ -9,6 +9,9 @@ Rails.application.routes.draw do
   # コメント（画面内遷移なし）
   resources :comments
 
+  # いいね
+  resources :feelings
+
   # 図書
   resources :books, shallow: true do
     member do

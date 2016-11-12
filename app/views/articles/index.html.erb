@@ -1,28 +1,27 @@
-<%= link_to '記事を追加する', new_article_path %>
+<button class="btn-primary" onClick="location.href='/articles/new'">新しい記事を追加する</button>
+<br>
+<br>
 
-<br><br>
+<% if !@articles.empty? %>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>タイトル</th>
-      <th>投稿者</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<% @articles.each do |article| %>
 
-  <tbody>
-    <% @articles.each do |article| %>
-      <tr>
-        <td><%= link_to article.title, article.url, :target=>["_blank"]%></td>
-        <td><%= article.user.email %></td>
+<div class="panel panel-default">
+  <div class="panel-heading">
+      <h4><%= link_to article.title, article.url %></h4>
+  </div>
+  <div class="panel-body" align="center">
+    <div align="right">
+      <h4>推薦者：<%= article.user.email %></h4>
         <% if article.user_id.to_i == current_user.id.to_i %>
-          <td><%= link_to '編集', edit_article_path(article) %></td>
-          <td><%= link_to '削除', article, method: :delete, data: { confirm: '削除してよろしいですか？' } %></td>
+          <%= link_to '編集', edit_article_path(article) %>
+          <%= link_to '削除', article, method: :delete, data: { confirm: '削除してよろしいですか？' } %></h5>
         <% end %>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+    </div>
+  </div>
+</div>
 
+<% end %>
+
+<% end %>
 

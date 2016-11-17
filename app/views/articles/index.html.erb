@@ -30,4 +30,20 @@
 
 <% end %>
 
+<script type="text/javascript">
+$.ajax({
+  type: "POST",
+  url: "/feelings",
+  dataType: "json",
+  data : {target : "article", target_id : "1", feeling : "good"},
+
+  }).done(function(data, status, xhr) {
+    var dataArray = data;
+    $.each(dataArray, function(i){
+
+    });
+});
+</script>
+
 <% end %>
+

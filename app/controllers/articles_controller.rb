@@ -8,7 +8,11 @@ class ArticlesController < ApplicationController
     @articles = Article.joins(:user).order('id DESC').page(params[:page])
 
     @articles.collect! do |article|
-      Article.get_url_info(article)
+      if article.url_title.nil?
+        Article.get_url_info(article)
+        article.save
+      end
+      article
     end
   end
 

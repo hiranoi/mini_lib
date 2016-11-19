@@ -18,16 +18,37 @@
     <% end %>
     <h5><%= article.url_title %></h5>
     <h6><%= article.url_description %>…</h6>
-
-    <% if article.user_id.to_i == current_user.id.to_i %>
       <div align="right">
+      <% if article.user_id.to_i == current_user.id.to_i %>
         <%= link_to '編集', edit_article_path(article) %>
         <%= link_to '削除', article, method: :delete, data: { confirm: '削除してよろしいですか？' } %></>
+        <button type="button" class="btn btn-primary btn-xs" id="<%= article.id %>" onclick="good(<%= article.id %>)">いいね！</button> 
+        <span id="num<%= article.id %>"><%= article.feelings.count %></span>人
+      <% end %>
       </div>
-    <% end %>
   </div>
 </div>
 
 <% end %>
 
+<script type="text/javascript">
+function good(id){
+  $.ajax({
+    type: "POST",
+    url: "/feelings",
+    dataType: "json",
+    data : {article_id : id},
+    }).done(function(data, status, xhr) {
+        var str = "#"+id
+        $(str).prop("disabled", true)
+        countUp(id)
+  });
+}
+function countUp(id){
+  var str = "#num"+id;
+  var val = parseInt($(str).text());
+  $(str).replaceWith(String(val+1));
+}
+</script>
 <% end %>
+

@@ -39,7 +39,7 @@ function good(id){
     dataType: "json",
     data : {article_id : id},
     }).done(function(data, status, xhr) {
-        var str = "#id"+id
+        var str = "#"+id
         $(str).prop("disabled", true)
         countUp(id)
   });

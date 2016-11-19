@@ -22,7 +22,7 @@
       <% if article.user_id.to_i == current_user.id.to_i %>
         <%= link_to '編集', edit_article_path(article) %>
         <%= link_to '削除', article, method: :delete, data: { confirm: '削除してよろしいですか？' } %></>
-        <button type="button" class="btn btn-primary btn-xs">いいね！</button> 2人
+        <button type="button" class="btn btn-primary btn-xs" onclick="good(<%= article.id %>)">いいね！</button> <%= article.feelings.count %>人
       <% end %>
       </div>
   </div>
@@ -31,18 +31,20 @@
 <% end %>
 
 <script type="text/javascript">
-$.ajax({
-  type: "POST",
-  url: "/feelings",
-  dataType: "json",
-  data : {target : "article", target_id : "1", feeling : "good"},
+function good(id){
+  $.ajax({
+    type: "POST",
+    url: "/feelings",
+    dataType: "json",
+    data : {article_id : id, feeling : "good"},
 
-  }).done(function(data, status, xhr) {
-    var dataArray = data;
-    $.each(dataArray, function(i){
+    }).done(function(data, status, xhr) {
+      var dataArray = data;
+      $.each(dataArray, function(i){
 
-    });
-});
+      });
+  });
+}
 </script>
 
 <% end %>

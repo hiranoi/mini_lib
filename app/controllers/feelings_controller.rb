@@ -9,10 +9,9 @@ class FeelingsController < ApplicationController
 
   def create
   	@feeling = Feeling.new()
-  	@feeling.target = params[:target]
-  	@feeling.target_id = params[:target_id]
-  	@feeling.feeling = params[:feeling]
-
+  	@feeling.article_id = params[:article_id]
+  	@feeling.user_id = current_user.id
+	@feeling.feeling = "good"
   	@feeling.save
 
   	render :json => "true"

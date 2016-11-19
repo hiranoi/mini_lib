@@ -78,9 +78,8 @@ ActiveRecord::Schema.define(version: 20161112120328) do
   end
 
   create_table "feelings", force: :cascade do |t|
-    t.string   "target"
     t.integer  "user_id"
-    t.integer  "target_id"
+    t.integer  "article_id"
     t.text     "feeling"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

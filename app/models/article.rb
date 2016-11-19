@@ -1,5 +1,7 @@
 class Article < ActiveRecord::Base
     belongs_to :user
+	has_many :feelings
+
     validates :title, length: { maximum: 60 }
 
      def self.get_url_info(article)

@@ -3,7 +3,7 @@
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="field">
     <%= f.label :email %>
-    <%= f.email_field :email, autofocus: true ,:autocomplete => "on"%>
+    <%= f.email_field :email, autofocus: true %>
   </div>
 
   <div class="field">
@@ -14,7 +14,7 @@
   <% if devise_mapping.rememberable? -%>
     <br>
     <div class="field">
-      <%= f.check_box :remember_me %> ID、Passwordを記憶する
+      <%= f.check_box :remember_me %> ログイン状態を保持する
     </div>
   <% end -%>
 
@@ -23,4 +23,6 @@
   </div>
 <% end %>
 
+<br>
 <%= render "users/shared/links" %>
+※パスワードをお忘れの場合、新規アカウントをを再作成してください。

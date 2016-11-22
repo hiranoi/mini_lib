@@ -98,8 +98,8 @@ ActiveRecord::Schema.define(version: 20161112120328) do
     t.string   "url"
     t.string   "thumbnail_url"
     t.string   "embed"
-    t.string   "recommend_user"
     t.string   "recommend_comment"
+    t.integer  "user_id"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
   end

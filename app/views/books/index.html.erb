@@ -1,8 +1,21 @@
 <%= search_form_for @q do |f| %>
-図書検索 <%= f.search_field :title_or_author_or_publisher_or_owner_cont, placeholder: '検索' %>
-<%= f.submit %>
+<div class="row">
+  <div class="col-lg-6">
+    <div class="input-group">
+      <%= f.search_field :title_or_author_or_publisher_or_owner_cont, placeholder: '図書名、所有者で探す', class:'form-control' %>
+      <span class="input-group-btn">
+        <button class="btn btn-primary" type="submit">検索</button>
+      </span>
+    </div><!-- /input-group -->
+  </div><!-- /.col-lg-6 -->
+</div>
 <% end %>
-並べ替え | <%= sort_link(@q, :id,'ID順') %> | <%= sort_link(@q, :comments_count,'コメント数順') %> |
+
+<h4>おすすめの図書</h4>
+<a class="btn btn-primary btn-block active" href="/books?utf8=%E2%9C%93&q%5Btitle_or_author_or_publisher_or_owner_cont%5D=%E3%83%AA%E3%82%AF%E3%83%AB%E3%83%BC%E3%83%88%E3%80%81%E9%80%B2%E5%8C%96%E3%82%92%E6%AD%A2%E3%82%81%E3%81%AA%E3%81%84IT%E7%8F%BE%E5%A0%B4%E5%8A%9B">リクルート、進化を止めないIT現場力</a>
+<a class="btn btn-primary btn-block active" href="http://localhost:3000/books?utf8=%E2%9C%93&q%5Btitle_or_author_or_publisher_or_owner_cont%5D=tsutax%40icloud.com">部長おすすめ</a>
+
+<br>
 
 <% @books.each do |book| %>
 <div class="panel panel-default">

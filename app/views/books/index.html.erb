@@ -6,17 +6,17 @@
       <span class="input-group-btn">
         <button class="btn btn-primary" type="submit">検索</button>
       </span>
-    </div><!-- /input-group -->
-  </div><!-- /.col-lg-6 -->
+    </div>
+  </div>
 </div>
 <% end %>
 
 <h4>おすすめの図書</h4>
 <a class="btn btn-primary btn-block active" href="/books?utf8=%E2%9C%93&q%5Btitle_or_author_or_publisher_or_owner_cont%5D=%E3%83%AA%E3%82%AF%E3%83%AB%E3%83%BC%E3%83%88%E3%80%81%E9%80%B2%E5%8C%96%E3%82%92%E6%AD%A2%E3%82%81%E3%81%AA%E3%81%84IT%E7%8F%BE%E5%A0%B4%E5%8A%9B">リクルート、進化を止めないIT現場力</a>
 <a class="btn btn-primary btn-block active" href="/books?utf8=%E2%9C%93&q%5Btitle_or_author_or_publisher_or_owner_cont%5D=tsutax%40icloud.com">部長おすすめ</a>
+<a class="btn btn-primary btn-block active" href="/books?q%5Bs%5D=comments_count+desc">コメントが多い</a>
 
 <br>
-
 <% @books.each do |book| %>
 <div class="panel panel-default">
   <div class="panel-heading">
@@ -25,11 +25,12 @@
   <div class="panel-body">
     <% if book.user.syoko %>
       <span class="label label-info">貸出可能</span>
+      <h6>推薦者：<%= book.owner %></h6>
       <h6>場所：<%=book.user.place %></h6>
     <% else %>
       <span class="label label-warning">貸出中</span>
       <h6>返却予定：<%= (book.updated_at + 7.days).strftime("%Y/%m/%d") %></h6>
-      <h6>利用者：<%= book.user.email %></h6>
+      <h6>推薦者：<%= book.owner %></h6>
     <% end %>
     <h5>コメント：<%= book.comments.count %>件</h5>
     <% if book.comments.count > 0 %>

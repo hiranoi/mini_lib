@@ -1,4 +1,5 @@
 class Slide < ActiveRecord::Base
+  belongs_to :user
 
   def self.inquiry_slide_detail(url)
 

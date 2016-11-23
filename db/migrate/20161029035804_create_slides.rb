@@ -6,8 +6,8 @@ class CreateSlides < ActiveRecord::Migration
       t.string :url
       t.string :thumbnail_url
       t.string :embed
-      t.string :recommend_user
       t.string :recommend_comment
+      t.integer :user_id
 
       t.timestamps null: false
     end

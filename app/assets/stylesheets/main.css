@@ -2166,7 +2166,17 @@
 		display: block;
 		font-size: 0.9em;
 		font-weight: 300;
-		margin: 0.5em 0 0.5em 0;
+		margin: 0.5em 0 0 0;
+	}
+
+	input[type="text"],
+	input[type="password"],
+	input[type="email"],
+	select,
+	textarea {
+		margin:0.5em 0 0.5em 0;
+
+		width: 80%;
 	}
 
 /* Box */
@@ -2516,12 +2526,6 @@
 			table.alt tfoot {
 				border-top: 0;
 			}
-
-/* Button */
-
-	button {
-		margin: 1em 0 1em 0;
-	}
 
 /* Goto Next */
 

@@ -7,19 +7,18 @@
   </div>
 
   <div class="field">
-    <%= f.label :password %>
+    <label>パスワード</label>
     <%= f.password_field :password, autocomplete: "on" %>
   </div>
 
   <% if devise_mapping.rememberable? -%>
-    <br>
     <div class="field">
       <%= f.check_box :remember_me %> ログイン状態を保持する
     </div>
   <% end -%>
 
   <div class="actions">
-    <%= f.submit "Log in", :class => 'btn btn-default'%>
+    <button type="submit" class="btn btn-primary">ログインする</button>
   </div>
 <% end %>
 

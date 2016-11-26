@@ -9,21 +9,23 @@
   </div>
 
   <div class="field">
-    <%= f.label :password %>
     <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> 文字以上)</em>
+      <label>パスワード(<%= @minimum_password_length %> 文字以上)</label>
+    <% else %>
+      <label>パスワード</label>
     <% end %>
     <%= f.password_field :password, autocomplete: "off" %>
   </div>
 
   <div class="field">
-    <%= f.label :password_confirmation %>
+    <label>パスワード確認</label>
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
   </div>
 
-  <div class="actions">
-    <%= f.submit "Sign up" ,:class => 'btn btn-default' %>
+  <div class="action">
+    <button type="submit" class="btn btn-primary">作成する</button>
   </div>
-<% end %>
 
+<% end %>
+<br>
 <%= render "users/shared/links" %>

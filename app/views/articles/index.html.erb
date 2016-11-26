@@ -1,4 +1,4 @@
-<button class="btn btn-secondary" onClick="location.href='/articles/new'">新しい記事を追加する</button>
+<button class="btn btn-primary" onClick="location.href='/articles/new'">新しい記事を追加する</button>
 <br>
 <br>
 
@@ -10,6 +10,12 @@
   <div class="panel-heading">
     <h6>投稿日時：<%= (article.created_at).strftime("%Y/%m/%d %H:%M") %></h6>
     <h6>投稿者：<%= article.user.email %></h6>
+    <% if article.user_id.to_i == current_user.id.to_i %>
+      <div align="right">
+        <%= link_to '記事を削除', article, method: :delete, data: { confirm: '削除してよろしいですか？' } %>
+      </div>
+    <% end %>
+
   </div>
   <div class="panel-body">
     <a href=<%= article.url %>><h4><%= article.title %></h4></a>
@@ -19,10 +25,6 @@
     <h5><%= article.url_title %></h5>
     <h6><%= article.url_description %>…</h6>
       <div align="right">
-      <% if article.user_id.to_i == current_user.id.to_i %>
-        <%= link_to '編集', edit_article_path(article) %>
-        <%= link_to '削除', article, method: :delete, data: { confirm: '削除してよろしいですか？' } %></>
-      <% end %>
         <button type="button" class="btn btn-primary btn-xs" id="<%= article.id %>" onclick="good(<%= article.id %>)">ぱねぇ！</button> 
         <span id="num<%= article.id %>"><%= article.feelings.count %></span>人
       </div>

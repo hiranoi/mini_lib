@@ -22,15 +22,14 @@ class BooksController < ApplicationController
 
     @book.user_id = current_user.id
     @book.owner = user.email
+
     # 国会図書館apiへの問い合わせ結果を格納
     @book = Book.inquiry_api(@book)
 
     if @book.save
       redirect_to new_book_path, notice: '図書を登録しました。'
-      #format.json { render :show, status: :created, location: @book }
     else
       render :new
-      #format.json { render json: @book.errors, status: :unprocessable_entity }
     end
 
   rescue => e

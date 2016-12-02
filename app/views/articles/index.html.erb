@@ -27,7 +27,7 @@
           <%= link_to '記事を削除', article, method: :delete, data: { confirm: '削除してよろしいですか？' } %>　
         <% end %>
         <button type="button" class="btn btn-primary btn-xs" id="<%= article.id %>" onclick="good(<%= article.id %>)">ぱねぇ！</button> 
-        <span id="num<%= article.id %>"><%= article.feelings.count %></span>人
+        <span id="num<%= article.id %>"><%= article.feelings_count %></span>人
       </div>
   </div>
 </div>

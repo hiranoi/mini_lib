@@ -4,7 +4,6 @@ class ArticlesController < ApplicationController
   before_filter :set_search
 
   def index
-    #@articles = Article.joins(:user).order('id DESC').page(params[:page])
     @articles = @q.result(distinct: true).joins(:user).order('id DESC').page(params[:page]).per(20)
 
     @articles.collect! do |article|

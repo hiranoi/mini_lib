@@ -4,7 +4,6 @@ class BooksController < ApplicationController
   before_filter :set_search
 
   def index
-    #@books = Book.joins(:user).all
     @books = @q.result(distinct: true).joins(:user).order('id DESC').page(params[:page])
   end
 

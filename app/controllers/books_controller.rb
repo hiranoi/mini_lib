@@ -4,8 +4,7 @@ class BooksController < ApplicationController
   before_filter :set_search
 
   def index
-    #@books = Book.joins(:user).all
-    @books = @q.result(distinct: true).joins(:user).order('id DESC').page(params[:page])
+    @books = @q.result(distinct: true).joins(:user).order('id DESC').page(params[:page]).per(20)
   end
 
   def new
@@ -22,15 +21,14 @@ class BooksController < ApplicationController
 
     @book.user_id = current_user.id
     @book.owner = user.email
+
     # 国会図書館apiへの問い合わせ結果を格納
     @book = Book.inquiry_api(@book)
 
     if @book.save
       redirect_to new_book_path, notice: '図書を登録しました。'
-      #format.json { render :show, status: :created, location: @book }
     else
       render :new
-      #format.json { render json: @book.errors, status: :unprocessable_entity }
     end
 
   rescue => e

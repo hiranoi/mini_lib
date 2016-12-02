@@ -31,9 +31,6 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'devise'
 gem 'rails-i18n'
 
-# ActiveAdmin
-gem 'activeadmin', github: 'activeadmin'
-
 # kaminari
 gem 'kaminari'
 

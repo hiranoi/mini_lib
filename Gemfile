@@ -9,7 +9,7 @@ gem 'rails', '4.2.5.1'
 #gem 'rails_12factor', group: :production
 
 gem 'sqlite3', groups: %w(test development), require: false
-gem 'pg', groups: %w(production), require: false
+gem 'pg', groups: %w(production staging), require: false
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -29,11 +29,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'devise'
-gem 'devise-bootstrap-views'
 gem 'rails-i18n'
-
-# ActiveAdmin
-gem 'activeadmin', github: 'activeadmin'
 
 # kaminari
 gem 'kaminari'
@@ -41,6 +37,14 @@ gem 'kaminari'
 gem 'coffee-script-source', '1.8.0'
 
 gem 'faraday'
+
+gem 'dotenv-rails'
+
+gem "ransack", '~> 1.6.3'
+
+gem 'google-analytics-rails'
+
+gem 'link_thumbnailer'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

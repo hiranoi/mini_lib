@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160722013907) do
+ActiveRecord::Schema.define(version: 20161202042413) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -50,8 +50,12 @@ ActiveRecord::Schema.define(version: 20160722013907) do
     t.string   "title"
     t.string   "url"
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.string   "url_title"
+    t.string   "url_thumbnail"
+    t.string   "url_description"
+    t.integer  "feelings_count",  default: 0
   end
 
   create_table "books", force: :cascade do |t|
@@ -74,11 +78,32 @@ ActiveRecord::Schema.define(version: 20160722013907) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "feelings", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "article_id"
+    t.text     "feeling"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "rent_histories", force: :cascade do |t|
     t.string   "name"
     t.string   "book"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "slides", force: :cascade do |t|
+    t.string   "slide_id"
+    t.string   "title"
+    t.string   "url"
+    t.string   "thumbnail_url"
+    t.string   "embed"
+    t.string   "recommend_user"
+    t.string   "recommend_comment"
+    t.integer  "user_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
   end
 
   create_table "users", force: :cascade do |t|

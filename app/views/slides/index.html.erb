@@ -1,0 +1,24 @@
+<button class="btn btn-primary" onClick="location.href='/slides/new'">新しいスライドを追加する</button>
+<br>
+<br>
+<% if !@slides.empty? %>
+
+<% @slides.each do |slide| %>
+
+<div class="panel panel-default">
+	<div class="panel-heading">
+	  	<h4><%= slide.title %></h4>
+	</div>
+	<div class="panel-body" align="center">
+		<a href="/slides/<%= slide.id %>">
+			<img src=<%= slide.thumbnail_url %> alt=<%= slide.title %>>
+		</a>
+		<div align="right">
+			<h4>推薦者：<%= slide.user.email %></h4>
+		</div>
+	</div>
+</div>
+
+<% end %>
+
+<% end %>

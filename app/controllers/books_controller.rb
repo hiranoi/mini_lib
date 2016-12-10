@@ -1,10 +1,10 @@
 class BooksController < ApplicationController
   before_action :authenticate_user!
   before_action :set_book, only: [:edit, :update, :destroy]
+  before_filter :set_search
 
   def index
-    #@books = Book.joins(:user).all
-    @books = Book.joins(:user).order('id DESC').page(params[:page])
+    @books = @q.result(distinct: true).joins(:user).order('id DESC').page(params[:page]).per(20)
   end
 
   def new
@@ -21,15 +21,14 @@ class BooksController < ApplicationController
 
     @book.user_id = current_user.id
     @book.owner = user.email
+
     # 国会図書館apiへの問い合わせ結果を格納
     @book = Book.inquiry_api(@book)
 
     if @book.save
       redirect_to new_book_path, notice: '図書を登録しました。'
-      #format.json { render :show, status: :created, location: @book }
     else
       render :new
-      #format.json { render json: @book.errors, status: :unprocessable_entity }
     end
 
   rescue => e
@@ -39,8 +38,7 @@ class BooksController < ApplicationController
 
   def show
     @book = Book.joins(:user).find(params[:id])
-    @comments = Comment.joins(:book, :user).where(book_id: params[:id])
-    #@users = User.all
+    @comments = Comment.joins(:book, :user).where(book_id: params[:id]).order("created_at desc")
   end
 
   def destroy
@@ -102,5 +100,9 @@ class BooksController < ApplicationController
 
   def book_params
     params.require(:book).permit(:user_id, :title, :author, :publisher, :isbn)
+  end
+
+  def set_search
+   @q = Book.search(params[:q])
   end
 end

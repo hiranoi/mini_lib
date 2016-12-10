@@ -12,6 +12,5 @@
  *
  *= require_tree .
  *= require bootstrap.min
- *= require devise_bootstrap_views
  *= require_self
  */

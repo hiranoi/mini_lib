@@ -53,11 +53,11 @@ class OpenSearchClient
         :title => title,
         :body => body,
         :icon => 'https://dashboard.push7.jp/uploads/b620a8a9979d498aa3de16cab4ac34e2.png',
-        :url => 'http://dev01jaqlib.herokuapp.com/',
+        :url => Constants::JAQLIB_DOMAIN + '/articles',
         :apikey => ENV['PUSH7_API_KEY']
     }
 
-    response = post('https://api.push7.jp', '/api/v1/6633be7a3c4d46628d47460d401d9737/send', pram)
+    response = post('https://api.push7.jp', '/api/v1/' + Constants::PUSH7_APP_NO + '/send', pram)
   end
 
 

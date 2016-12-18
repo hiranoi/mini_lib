@@ -2,9 +2,15 @@ class PushController < ApplicationController
 
   def create
 
+    # token check
+    if params[:token] != ENV['SLACK_TOKEN']
+      render :json => {"text" => "Tokenチェックエラー"}
+      return
+    end
+
     # check sent push
     if !Push.sent_check("news").empty?
-      render :json => "Push通知は1日1回までです"
+      render :json => {"text" => "Push通知は1日1回までです"}
       return
     end
 
@@ -12,7 +18,7 @@ class PushController < ApplicationController
     articles = Article.get_new_articles
 
     if articles.empty?
-      render :json => "新しい記事はありません"
+      render :json => {"text" => "新しい記事はありません"}
       return
     end
 
@@ -29,7 +35,7 @@ class PushController < ApplicationController
     # send push
     Push.send_news(push_body)
 
-    render :json => push_body
+    render :json => {"text" => push_body}
   end
 
 end

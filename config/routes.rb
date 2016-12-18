@@ -28,7 +28,7 @@ Rails.application.routes.draw do
   get 'rent_history' => 'rent_history#index'
 
   # PUSH
-  get 'push' => 'push#create'
+  post 'push' => 'push#create'
 
   # ユーザー管理
   devise_for :users, :controllers => {

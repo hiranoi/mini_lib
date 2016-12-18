@@ -1,5 +1,7 @@
 class PushController < ApplicationController
 
+  protect_from_forgery except: :push_action
+
   def create
 
     # token check

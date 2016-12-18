@@ -29,8 +29,6 @@ class OpenSearchClient
 
   def get_slideshow_by_word(word)
 
-    api_key = "BXUZhtwB"
-    secret_key = "zIZsdVoU"
     now_time = Time.now.to_i
     hash = Digest::SHA1.hexdigest("#{ENV['SLIDESHARE_SECRET_KEY']}#{now_time}")
 
@@ -49,6 +47,19 @@ class OpenSearchClient
     res_xml = REXML::Document.new(response.body)
   end
 
+  def send_push(title, body)
+
+    pram = {
+        :title => title,
+        :body => body,
+        :icon => 'https://dashboard.push7.jp/uploads/b620a8a9979d498aa3de16cab4ac34e2.png',
+        :url => Constants::JAQLIB_DOMAIN + '/articles',
+        :apikey => ENV['PUSH7_API_KEY']
+    }
+
+    response = post('https://api.push7.jp', '/api/v1/' + Constants::PUSH7_APP_NO + '/send', pram)
+  end
+
 
   private
 
@@ -58,6 +69,19 @@ class OpenSearchClient
       f.response :logger
       f.adapter  Faraday.default_adapter
     end
-    con.get path, pram # GET http://iss.ndl.go.jp/api/opensearch?isbn=9784774163666
+    con.get path, pram
+  end
+
+  def post(domain, path, pram)
+    con = Faraday.new(:url => domain) do |f|
+      f.request  :url_encoded
+      f.response :logger
+      f.adapter  Faraday.default_adapter
+    end
+    con.post do |req|
+      req.url path
+      req.headers['Content-Type'] = 'application/json'
+      req.body = pram.to_json
+    end
   end
 end

@@ -38,10 +38,7 @@
 
 <script type="text/javascript">
 function good(id){
-
   var str = "#"+id
-  $(str).prop("disabled", true)
-
   countUp(id)
 
   $.ajax({
@@ -55,7 +52,7 @@ function good(id){
 function countUp(id){
   var str = "#num"+id;
   var val = parseInt($(str).text());
-  $(str).replaceWith(String(val+1));
+  $(str).text(String(val+1));
 }
 </script>
 <% end %>

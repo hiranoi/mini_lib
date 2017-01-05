@@ -39,6 +39,7 @@ class BooksController < ApplicationController
   def show
     @book = Book.joins(:user).find(params[:id])
     @comments = Comment.joins(:book, :user).where(book_id: params[:id]).order("created_at desc")
+    @rent_histories = RentHistory.joins(:user).where(book_id: params[:id]).order("created_at desc")
   end
 
   def destroy
@@ -78,10 +79,9 @@ class BooksController < ApplicationController
 
     # 貸し出し履歴の保存
     rent_history = RentHistory.new
-    user = User.find(current_user.id)
-    rent_history.book = book.title
-    rent_history.name = user.email
     
+    rent_history.user_id = current_user.id
+    rent_history.book_id = book.id
 
     if book.save && rent_history.save
       redirect_to book_path, notice: '貸出処理が完了しました。'

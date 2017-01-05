@@ -42,6 +42,7 @@
 <%= button_to 'コメントする', new_book_comment_path(@book), :method => :get, :class => 'btn btn-primary' %><br>
 
 <% if @comments.length != 0 %>
+<h4>みんなのコメント</h4>
   <% @comments.each do |c| %>
 
   <div class="panel panel-default">
@@ -53,6 +54,27 @@
   </div>
   <% end %>
 <% end %>
+
+<% if @rent_histories.length != 0 %>
+<h4>貸出履歴</h4>
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>利用者</th>
+      <th>貸出日</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @rent_histories.each do |c| %>  
+    <tr>
+      <td><%= c.user.email %></td>
+      <td><%= (c.created_at).strftime("%Y/%m/%d %H:%M") %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+<% end %>
+
 <%#= button_to "削除", { :action => "rent", :id => @book.id }, :confirm => "本当に削除しますか?" %>
 <%#if current_user.id == @book.user_id %>
   <%#= link_to 'Destroy', @book, method: :delete,  %>

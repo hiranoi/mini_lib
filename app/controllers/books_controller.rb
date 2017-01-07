@@ -49,7 +49,7 @@ class BooksController < ApplicationController
 
   def rent
     book = Book.find(params[:id])
-    book.user_id = current_user.id
+    book.rent_user_id = current_user.id
 
     # 貸し出し履歴の保存
     rent_history = RentHistory.new
@@ -65,7 +65,7 @@ class BooksController < ApplicationController
 
   def bring_back
     book = Book.find(params[:id])
-    book.user_id = current_user.id
+    book.rent_user_id = nil
 
     if book.save
      redirect_to book_path, notice: '返却しました。'

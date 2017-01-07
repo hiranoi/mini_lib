@@ -32,10 +32,10 @@
 </div>
 
 
-<% if @book.user.syoko %>
+<% if !@book.rent_user_id? %>
   <%= button_to '借ります！', rent_book_path(@book),
   :method => :patch, data: { confirm: '貸出処理を行いますか？' }, :class => 'btn btn-primary' %><br>
-<% elsif @book.user_id == current_user.id %>
+<% elsif @book.rent_user_id == current_user.id %>
   <%= button_to '返します！', bring_back_book_path(@book),
   :method => :patch, data: { confirm: '本は所有者に返却済ですか？' }, :class => 'btn btn-primary' %><br>
 <% end %>

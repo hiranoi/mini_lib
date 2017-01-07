@@ -1,1 +1,17 @@
-edit
+<h2>アカウント設定</h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= devise_error_messages! %>
+
+  <div class="field">
+    <%= f.label :place %>
+    <%= f.text_field :place %>
+  </div>
+
+  <div class="action">
+    <button type="submit" class="btn btn-primary">更新する</button>
+  </div>
+
+<% end %>
+<br>
+<%= render "users/shared/links" %>

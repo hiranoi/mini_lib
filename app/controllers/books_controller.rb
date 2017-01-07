@@ -40,6 +40,10 @@ class BooksController < ApplicationController
     @book = Book.joins(:user).find(params[:id])
     @comments = Comment.joins(:book, :user).where(book_id: params[:id]).order("created_at desc")
     @rent_histories = RentHistory.joins(:user).where(book_id: params[:id]).order("created_at desc")
+
+    if @book.rent_user_id?
+      @rent_user = User.find(@book.rent_user_id)
+    end
   end
 
   def destroy

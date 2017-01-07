@@ -1,4 +1,4 @@
-<h1>図書登録　※管理者のみ！</h1>
+<h1>図書登録</h1>
 
 <%= form_for(@book) do |f| %>
   <% if @book.errors.any? %>
@@ -14,7 +14,7 @@
   <% end %>
 
   <div class="orm-group">
-    isbnを入力してください<br>
+    ISBNコードを入力してください<br>
     <%= f.number_field :isbn, { :class => "form-control" } %>
   </div>
 

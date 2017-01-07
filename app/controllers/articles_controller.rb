@@ -30,7 +30,7 @@ class ArticlesController < ApplicationController
     @article.user_id = current_user.id
 
       if @article.save
-        redirect_to new_article_path, notice: '記事をを登録しました。'
+        redirect_to new_article_path, notice: '記事を登録しました。'
       else
         render :new
       end

@@ -3,6 +3,8 @@ class Article < ActiveRecord::Base
 	has_many :feelings
 
     validates :title, length: { maximum: 60 }
+    validates :url, :title, presence: true
+    validates :url, format: /\A#{URI::regexp(%w(http https))}\z/
 
      def self.get_url_info(article)
 

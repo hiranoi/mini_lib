@@ -2984,6 +2984,7 @@
 	}
 
 		#header h1 {
+			color: #ffffff;
 			height: inherit;
 			left: 1.25em;
 			line-height: inherit;
@@ -3671,7 +3672,7 @@
 			input[type="reset"],
 			input[type="button"],
 			.button {
-				padding: 0;
+				padding: 6px 12px;
 			}
 
 		/* Spotlight */

@@ -24,15 +24,6 @@
           <li><%= link_to 'JaQ Lib', books_path %></li>
           <li><%= link_to 'JaQ News', articles_path %></li>
           <li><%= link_to 'JaQ Slideshow', slides_path %></li>
-          <% if user_admin? %>
-          <li>
-            <a>Admin</a>
-            <ul>
-              <li><%= link_to '図書登録', new_book_path %></li>
-            </ul>
-          </li>
-          <% end %>
-          </li>
           <% if user_signed_in? %>
             <li><%= link_to "アカウント設定", edit_user_registration_path %></li>
             <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>

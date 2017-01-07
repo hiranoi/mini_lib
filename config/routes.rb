@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   resources :books, shallow: true do
     member do
       patch 'rent'
+      patch 'bring_back'
     end
     resources :comments
   end

@@ -11,10 +11,11 @@
     <p><%= @book.publisher %></p>
     <h5>所有者</h5>
     <p><%= @book.owner %></p>
-
+    <h5>場所</h5>
+    <p><%= @book.user.place %></p>
     <% if !@book.rent_user_id? %>
       <h5>貸出日</h5>
-      <p>貸出可能(<%= @book.user.place %>)</p>
+      <p>貸出可能</p>
       <h5>返却期限</h5>
       <p>-</p>
       <h5>利用者</h5>

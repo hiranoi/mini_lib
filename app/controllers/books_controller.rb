@@ -40,6 +40,10 @@ class BooksController < ApplicationController
     @book = Book.joins(:user).find(params[:id])
     @comments = Comment.joins(:book, :user).where(book_id: params[:id]).order("created_at desc")
     @rent_histories = RentHistory.joins(:user).where(book_id: params[:id]).order("created_at desc")
+
+    if @book.rent_user_id?
+      @rent_user = User.find(@book.rent_user_id)
+    end
   end
 
   def destroy
@@ -47,50 +51,33 @@ class BooksController < ApplicationController
     redirect_to books_path, notice: '図書を削除しました。'
   end
 
-  def edit
-    @syoko = User.where(syoko: true)
-  end
-
-  def update
-    respond_to do |format|
-      if @book.update(book_params)
-        format.html { redirect_to @book, notice: '返却処理が完了しました。' }
-        format.json { render :show, status: :ok, location: @book }
-      else
-        format.html { render :edit }
-        format.json { render json: @book.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-#  def update
-#    book = Book.find(params[:id])
-#    book.user_id = current_user.id
-#    if book.save
-#      redirect_to book_path, notice: '所有者を変更しました。'
-#      #format.json { render :show, status: :created, location: @book }
-#    else
-#      render :new
-#      #format.json { render json: @book.errors, status: :unprocessable_entity }
-#    end
-#   end
   def rent
     book = Book.find(params[:id])
-    book.user_id = current_user.id
+    book.rent_user_id = current_user.id
 
     # 貸し出し履歴の保存
     rent_history = RentHistory.new
-    
     rent_history.user_id = current_user.id
     rent_history.book_id = book.id
 
     if book.save && rent_history.save
       redirect_to book_path, notice: '貸出処理が完了しました。'
-      #format.json { render :show, status: :created, location: @book }
     else
       render :new
-      #format.json { render json: @book.errors, status: :unprocessable_entity }
     end
   end
+
+  def bring_back
+    book = Book.find(params[:id])
+    book.rent_user_id = nil
+
+    if book.save
+     redirect_to book_path, notice: '返却しました。'
+    else
+     render :new
+    end
+  end
+
 
   private
 

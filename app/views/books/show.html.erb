@@ -77,7 +77,6 @@
 </table>
 <% end %>
 
-<%#= button_to "削除", { :action => "rent", :id => @book.id }, :confirm => "本当に削除しますか?" %>
-<%#if current_user.id == @book.user_id %>
-  <%#= link_to 'Destroy', @book, method: :delete,  %>
-<%# end %>
+<%if current_user.id == @book.user_id %>
+  <%= link_to '本を削除する（所有者のみ）', @book, method: :delete, data: { confirm: '本当に削除しますか？' } %>
+<% end %>

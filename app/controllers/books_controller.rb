@@ -9,6 +9,13 @@ class BooksController < ApplicationController
 
   def new
     @book = Book.new
+    isbn = params[:isbn]
+
+    if isbn == "y"
+      render :new
+    else
+      render :regist
+    end
   end
 
   def create
@@ -19,7 +26,9 @@ class BooksController < ApplicationController
     @book.owner = user.email
 
     # 国会図書館apiへの問い合わせ結果を格納
-    @book = Book.inquiry_api(@book)
+    if !@book.isbn.nil?
+      @book = Book.inquiry_api(@book)
+    end
 
     if @book.save
       redirect_to new_book_path, notice: '図書を登録しました。'
@@ -27,9 +36,10 @@ class BooksController < ApplicationController
       render :new
     end
 
-  rescue => e
-    logger.info e
-    redirect_to new_book_path, alert: '登録に失敗しました。'
+    rescue => e
+      logger.info e
+      redirect_to new_book_path, alert: '登録に失敗しました。'
+
   end
 
   def show

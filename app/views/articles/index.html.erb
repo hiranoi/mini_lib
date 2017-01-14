@@ -13,7 +13,7 @@
 <div class="panel panel-default">
   <div class="panel-heading">
     <h6>投稿日時：<%= (article.created_at).strftime("%Y/%m/%d %H:%M") %></h6>
-    <h6>投稿者：<%= article.user.email %></h6>
+    <h6>投稿者：<%= article.user.user_name %></h6>
   </div>
   <div class="panel-body">
     <a href=<%= article.url %>><h4><%= article.title %></h4></a>

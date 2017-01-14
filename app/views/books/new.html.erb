@@ -1,5 +1,5 @@
-<h1>図書登録（ISBNコードから）</h1>
-
+<h1>図書登録</h1>
+<h2>ISBNコードで登録する</h2>
 <%= form_for(@book) do |f| %>
   <% if @book.errors.any? %>
     <div id="error_explanation">
@@ -17,15 +17,28 @@
     ISBNコードを入力してください<br>
     <%= f.number_field :isbn, { :class => "form-control" } %>
   </div>
-
   <br>
-
   <div class="actions">
     <button type="submit" class="btn btn-primary">登録する</button>
   </div>
 
+<hr>
+
+<h2>図書名を指定して登録する</h2>
+  <div class="orm-group">
+    書籍名<br>
+    <%= f.text_field :title, { :class => "form-control" } %>
+    著者名（任意）<br>
+    <%= f.text_field :author, { :class => "form-control" } %>
+    出版社（任意）<br>
+    <%= f.text_field :publisher, { :class => "form-control" } %>
+  </div>
   <br>
-  
-  <%= link_to '手動で本を登録する', new_book_path %>
+  <div class="actions">
+    <button type="submit" class="btn btn-primary">登録する</button>
+  </div>
 
 <% end %>
+
+<br>
+<%= link_to '戻る', books_path %>

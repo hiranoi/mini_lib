@@ -9,13 +9,6 @@ class BooksController < ApplicationController
 
   def new
     @book = Book.new
-    isbn = params[:isbn]
-
-    if isbn == "y"
-      render :new
-    else
-      render :regist
-    end
   end
 
   def create

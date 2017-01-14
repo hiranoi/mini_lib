@@ -4,6 +4,7 @@ class Book < ActiveRecord::Base
   has_many :rent_histories
 
   validates :isbn, length: { maximum: 13 }
+  validates :title, presence: true
 
   def self.inquiry_api(book)
     unless book.isbn.to_s.length == 10 || book.isbn.to_s.length == 13

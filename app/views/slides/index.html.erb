@@ -7,15 +7,14 @@
 
 <div class="panel panel-default">
 	<div class="panel-heading">
-	  	<h4><%= slide.title %></h4>
+	  	<h6>投稿日時：<%= (slide.created_at).strftime("%Y/%m/%d %H:%M") %></h6>
+	  	<h6>投稿者：<%= slide.user.user_name %></h6>
 	</div>
-	<div class="panel-body" align="center">
+	<div class="panel-body">
+		<a href="/slides/<%= slide.id %>"><h4><%= slide.title %></h4></a>
 		<a href="/slides/<%= slide.id %>">
-			<img src=<%= slide.thumbnail_url %> alt=<%= slide.title %>>
+			<img src=<%= slide.thumbnail_url %> alt=<%= slide.title %> width="200">
 		</a>
-		<div align="right">
-			<h4>推薦者：<%= slide.user.email %></h4>
-		</div>
 	</div>
 </div>
 

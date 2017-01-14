@@ -10,7 +10,7 @@
     <h5>出版社</h5>
     <p><%= @book.publisher %></p>
     <h5>所有者</h5>
-    <p><%= @book.owner %></p>
+    <p><%= @book.user.user_name %></p>
     <h5>場所</h5>
     <p><%= @book.user.place %></p>
     <% if !@book.rent_user_id? %>
@@ -26,7 +26,7 @@
       <h5>返却期限</h5>
       <p><%= (@book.updated_at + 7.days).strftime("%Y-%m-%d") %></p>
       <h5>利用者</h5>
-      <p><%= @rent_user.email %></p>
+      <p><%= @rent_user.user_name %></p>
     <% end %>
 
   </div>
@@ -38,7 +38,7 @@
   :method => :patch, data: { confirm: '貸出処理を行いますか？' }, :class => 'btn btn-primary' %><br>
 <% elsif @book.rent_user_id == current_user.id %>
   <%= button_to '返します！', bring_back_book_path(@book),
-  :method => :patch, data: { confirm: '本は所有者に返却済ですか？' }, :class => 'btn btn-primary' %><br>
+  :method => :patch, data: { confirm: '本は所有者に返却済ですか？読んだ本の感想はコメント欄に書いていただけると幸いです。' }, :class => 'btn btn-primary' %><br>
 <% end %>
 
 <%= button_to 'コメントする', new_book_comment_path(@book), :method => :get, :class => 'btn btn-primary' %><br>
@@ -50,7 +50,7 @@
   <div class="panel panel-default">
     <div class="panel-body">
       <h6>投稿日時：<%= (c.created_at).strftime("%Y/%m/%d %H:%M") %></h6>
-      <h6>投稿者：<%= c.user.email %></h6>
+      <h6>投稿者：<%= c.user.user_name %></h6>
       <div class="well well-sm"><h6><%= c.comment %></h6></div>
     </div>
   </div>
@@ -69,7 +69,7 @@
   <tbody>
   <% @rent_histories.each do |c| %>  
     <tr>
-      <td><%= c.user.email %></td>
+      <td><%= c.user.user_name %></td>
       <td><%= (c.created_at).strftime("%Y/%m/%d %H:%M") %></td>
     </tr>
   <% end %>
@@ -77,7 +77,6 @@
 </table>
 <% end %>
 
-<%#= button_to "削除", { :action => "rent", :id => @book.id }, :confirm => "本当に削除しますか?" %>
-<%#if current_user.id == @book.user_id %>
-  <%#= link_to 'Destroy', @book, method: :delete,  %>
-<%# end %>
+<%if current_user.id == @book.user_id %>
+  <%= link_to '本を削除する（所有者のみ）', @book, method: :delete, data: { confirm: '本当に削除しますか？' } %>
+<% end %>

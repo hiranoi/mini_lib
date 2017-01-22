@@ -1,9 +1,8 @@
 <button class="btn btn-info btn-block  active" onClick="location.href='/articles/new'">新しい記事を追加する</button>
 
 <h4>おすすめの記事</h4>
-<a class="btn btn-primary btn-block active" href="/articles?utf8=%E2%9C%93&q%5Buser_email_cont%5D=tsutax%40icloud.com">ツクヲススメ</a>
-<a class="btn btn-primary btn-block active" href="/articles?q%5Bs%5D=feelings_count+desc">ぱねぇ！が多い</a>
-<a class="btn btn-primary btn-block active" href="/articles">新着順（デフォルト）</a>
+<button class="btn btn-primary btn-block  active" onClick="location.href='/articles?utf8=%E2%9C%93&q%5Buser_email_cont%5D=tsutax%40icloud.com'">ツクヲススメ</button>
+<button class="btn btn-primary btn-block  active" onClick="location.href='/articles'">新着順（デフォルト）</button>
 <br>
 <%= paginate @articles %>
 <% if !@articles.empty? %>

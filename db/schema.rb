@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170114012342) do
+ActiveRecord::Schema.define(version: 20170122073016) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -69,6 +69,9 @@ ActiveRecord::Schema.define(version: 20170114012342) do
     t.string   "owner"
     t.integer  "comments_count"
     t.integer  "rent_user_id"
+    t.string   "amazon_url"
+    t.string   "image_url"
+    t.string   "description"
   end
 
   create_table "comments", force: :cascade do |t|

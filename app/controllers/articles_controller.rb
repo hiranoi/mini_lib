@@ -8,8 +8,12 @@ class ArticlesController < ApplicationController
 
     @articles.collect! do |article|
       if article.url_title.nil?
-        Article.get_url_info(article)
-        article.save
+        begin
+          Article.get_url_info(article)
+          article.save
+        rescue => e
+          logger.error e.message + ":不正なURLが存在します"
+        end
       end
       article
     end

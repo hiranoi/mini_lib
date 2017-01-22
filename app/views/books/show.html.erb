@@ -1,10 +1,15 @@
 <header class="major">
   <h1><%= @book.title %></h1>
+
+  <% if @book.image_url? %>
+  <div align="center">
+    <img src=<%= @book.image_url %> alt=<%= @book.title %> width="100" align="center">
+  </div>
+  <% end %>
 </header>
 
 <div class="panel">
   <div class="panel-body">
-
     <h5>著者名</h5>
     <p><%= @book.author %></p>
     <h5>出版社</h5>
@@ -31,7 +36,6 @@
 
   </div>
 </div>
-
 
 <% if !@book.rent_user_id? %>
   <%= button_to '借ります！', rent_book_path(@book),
@@ -76,7 +80,9 @@
   </tbody>
 </table>
 <% end %>
-
+<% if @book.amazon_url? %>
+  <a href=<%= @book.amazon_url %>>購入したい方はこちら</a><br>
+<% end %>
 <%if current_user.id == @book.user_id %>
   <%= link_to '本を削除する（所有者のみ）', @book, method: :delete, data: { confirm: '本当に削除しますか？' } %>
 <% end %>

@@ -1,8 +1,11 @@
 <header class="major">
   <h1><%= @book.title %></h1>
+
+  <% if @book.image_url? %>
   <div align="center">
     <img src=<%= @book.image_url %> alt=<%= @book.title %> width="100" align="center">
   </div>
+  <% end %>
 </header>
 
 <div class="panel">
@@ -77,7 +80,9 @@
   </tbody>
 </table>
 <% end %>
-<a href=<%= @book.amazon_url %> target=”_blank”>購入したい方はこちら</a><br>
+<% if @book.amazon_url? %>
+  <a href=<%= @book.amazon_url %>>購入したい方はこちら</a><br>
+<% end %>
 <%if current_user.id == @book.user_id %>
   <%= link_to '本を削除する（所有者のみ）', @book, method: :delete, data: { confirm: '本当に削除しますか？' } %>
 <% end %>

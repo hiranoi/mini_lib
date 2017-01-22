@@ -13,25 +13,34 @@
 <button class="btn btn-primary btn-block active" onClick="location.href='/books?q%5Bs%5D=comments_count+desc'">コメントが多い</button>
 <br>
 <%= paginate @books %>
+<table class="table table-bordered table-striped">
+  <tbody>
 <% @books.each do |book| %>
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <% if !book.rent_user_id? %>
-      <span class="label label-info">貸出可能</span>
-    <% else %>
-      <span class="label label-warning">貸出中</span>
-    <% end %>
-      <h6>所有者：<%= book.user.user_name %>　場所：<%= book.user.place %></h6>
-  </div>
-  <div class="panel-body">
-    <h4><%= link_to book.title, book %></h4>
-    <% if book.image_url %>
-      <a href=""><img src=<%= book.image_url %> alt=<%= book.title %> width="100"></a>
-    <% end %>
-
-    <h5>コメント：<%= book.comments.count %>件</h5>
-  </div>
-</div>
-
+    <tr>
+      <td>
+      <% if book.image_url %>
+        <a href="/books/<%= book.id %>"><img src=<%= book.image_url %> alt=<%= book.title %> width="70"></a>
+      <% else %>
+        <a href="/books/<%= book.id %>"><img src="/assets/no_image" alt="No Image" width="70"></a>
+      <% end %>
+      </td>
+      <td>
+        <h5><%= link_to book.title, book %></h5>
+        <% if !book.rent_user_id? %>
+          <span class="label label-info">貸出可能</span>
+        <% else %>
+          <span class="label label-warning">貸出中</span>
+        <% end %>
+        <h6>所有者：<%= book.user.user_name %></h6>
+        <h6>場所：<%= book.user.place %></h6>
+        <h6>コメント：<%= book.comments.count %>件</h6>
+      </td>
+      <td>
+        <button class="btn btn-primary" onClick="location.href='/books/<%= book.id %>'">詳細を見る</button>
+      </td>
+    </tr>
 <% end %>
+  </tbody>
+</table>
+
 <%= paginate @books %>

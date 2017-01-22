@@ -41,4 +41,10 @@ Rails.application.configure do
 
   #mailer
   config.action_mailer.default_url_options = { host: 'localhost:3000' }
+
+  Amazon::Ecs.options = {
+    associate_tag: 'koichi0002-22',
+    AWS_access_key_id:'AKIAIO2FNC36FIP6X53A',
+    AWS_secret_key:'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'
+  }
 end

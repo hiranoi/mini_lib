@@ -43,6 +43,29 @@ class BooksController < ApplicationController
     if @book.rent_user_id?
       @rent_user = User.find(@book.rent_user_id)
     end
+
+    if !@book.image_url.nil?
+      return
+    end
+
+    begin
+      amazon_res = Amazon::Ecs.item_search(
+        @book.title,
+        search_index:'Books',
+        dataType:'script',
+        response_group:'ItemAttributes, Images',
+        country:'jp',
+        power:"Not kindle"
+      )
+
+      amazon_res.items.each do |item|
+          @book.image_url = item.get('LargeImage/URL')
+          @book.amazon_url = item.get('DetailPageURL')
+          break;
+      end
+      @book.save
+    rescue
+    end
   end
 
   def destroy

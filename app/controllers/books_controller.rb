@@ -64,7 +64,8 @@ class BooksController < ApplicationController
           break;
       end
       @book.save
-    rescue
+    rescue => e
+      logger.info e
     end
   end
 

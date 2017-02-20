@@ -14,7 +14,7 @@
       <td>
         <h4><a href=<%= article.url %> target=”_blank”><%= article.title %></a></h4>
         <h5><a href=<%= article.url %> target=”_blank”><%= article.url_title %></a></h5>
-        <h6><%= article.url_description %>…</h6>
+        <h6><%= truncate(article.url_description, length:200) %></h6>
         
         <div align="right">
         <button type="button" class="btn btn-primary btn-xs" id="<%= article.id %>" onclick="good(<%= article.id %>)">ぱねぇ！</button> 

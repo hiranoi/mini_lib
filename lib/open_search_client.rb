@@ -11,42 +11,6 @@ class OpenSearchClient
     res_xml = REXML::Document.new(response.body)
   end
 
-  def get_slideshow_by_url(url)
-
-    now_time = Time.now.to_i
-    hash = Digest::SHA1.hexdigest("#{ENV['SLIDESHARE_SECRET_KEY']}#{now_time}")
-
-    pram = {
-      :api_key => ENV['SLIDESHARE_API_KEY'],
-      :ts => now_time,
-      :hash => hash,
-      :slideshow_url => url
-    }
-
-    response = get(SLIDESHARE_DOMAIN, '/api/2/get_slideshow', pram)
-    res_xml = REXML::Document.new(response.body)
-  end
-
-  def get_slideshow_by_word(word)
-
-    now_time = Time.now.to_i
-    hash = Digest::SHA1.hexdigest("#{ENV['SLIDESHARE_SECRET_KEY']}#{now_time}")
-
-    pram = {
-      :api_key => ENV['SLIDESHARE_API_KEY'],
-      :ts => now_time,
-      :hash => hash,
-      :q => word,
-      :lang => 'ja',
-      :sort => 'mostviewed',
-      :file_type => 'presentations',
-      :detailed => '0'
-    }
-
-    response = get(SLIDESHARE_DOMAIN, '/api/2/search_slideshows', pram)
-    res_xml = REXML::Document.new(response.body)
-  end
-
   def send_push(title, body)
 
     pram = {

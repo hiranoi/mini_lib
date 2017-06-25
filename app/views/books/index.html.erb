@@ -25,12 +25,11 @@
       <% end %>
       </td>
       <td>
-        <% if !book.rent_user_id? %>
-          <span class="label label-info">貸出可能</span>
-        <% else %>
-          <span class="label label-warning">貸出中</span>
-        <% end %>
         <h4><%= link_to book.title, book %></h4>
+        <% if book.rent_user_id? %>
+          <h5>貸出中</h5>
+        <% end %>
+        <h6><%= book.author %>　<%= book.publisher %></h6>
         <div align="right">
           <button class="btn btn-primary" onClick="location.href='/books/<%= book.id %>'">詳細を見る</button>
           <h6>コメント：<%= book.comments.count %>件</h6>

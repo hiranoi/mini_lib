@@ -1,37 +1,33 @@
 <button class="btn btn-info btn-block  active" onClick="location.href='/articles/new'">新しい記事を追加する</button>
 
-<h4>おすすめの記事</h4>
-<button class="btn btn-primary btn-block  active" onClick="location.href='/articles?utf8=%E2%9C%93&q%5Buser_email_cont%5D=tsutax%40icloud.com'">ツクヲススメ</button>
-<button class="btn btn-primary btn-block  active" onClick="location.href='/articles'">新着順（デフォルト）</button>
-<br>
 <%= paginate @articles %>
+
 <% if !@articles.empty? %>
 
+<table class="table table-bordered table-striped">
+  <tbody>
 <% @articles.each do |article| %>
-
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h6>投稿日時：<%= (article.created_at).strftime("%Y/%m/%d %H:%M") %></h6>
-    <h6>投稿者：<%= article.user.user_name %></h6>
-  </div>
-  <div class="panel-body">
-    <a href=<%= article.url %> target=”_blank”><h4><%= article.title %></h4></a>
-    <% if article.url_thumbnail %>
-      <a href=<%= article.url %> target=”_blank”><img src=<%= article.url_thumbnail %> alt=<%= article.url_title %> width="200"></a>
-    <% end %>
-    <h5><%= article.url_title %></h5>
-    <h6><%= article.url_description %>…</h6>
-      <div align="right">
-        <% if article.user_id.to_i == current_user.id.to_i %>
-          <%= link_to '記事を削除', article, method: :delete, data: { confirm: '削除してよろしいですか？' } %>　
-        <% end %>
+    <tr>
+      <td>
+        <a href=<%= article.url %> target=”_blank”><img src=<%= article.url_thumbnail %> alt=<%= article.url_title %> width="60" align="right"></a>
+        <h4><a href=<%= article.url %> target=”_blank”><%= article.title %></a></h4>
+        <h5><a href=<%= article.url %> target=”_blank”><%= article.url_title %></a></h5>
+        <h6><%= truncate(article.url_description, length:200) %></h6>
+        <div align="right">
         <button type="button" class="btn btn-primary btn-xs" id="<%= article.id %>" onclick="good(<%= article.id %>)">ぱねぇ！</button> 
         <span id="num<%= article.id %>"><%= article.feelings_count %></span>人
-      </div>
-  </div>
-</div>
-
+        <h6>
+          <% if article.user_id.to_i == current_user.id.to_i %>
+            <%= link_to '記事を削除', article, method: :delete, data: { confirm: '削除してよろしいですか？' } %>
+          <% end %>
+          　投稿者：<%= article.user.user_name %>　投稿日時：<%= (article.created_at).strftime("%Y/%m/%d %H:%M") %>　
+        </h6>
+        </div>
+      </td>
+    </tr>
 <% end %>
+  </tbody>
+</table>
 
 <%= paginate @articles %>
 
@@ -54,5 +50,5 @@ function countUp(id){
   $(str).text(String(val+1));
 }
 </script>
-<% end %>
 
+<% end %>

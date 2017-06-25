@@ -17,12 +17,12 @@
 
   <!-- Header -->
     <header id="header">
-      <h1 id="logo">JaQ LIB</h1>
+      <h1 id="logo">JaQ NEWS</h1>
       <nav id="nav">
         <ul>
           <li><%= link_to 'Top', root_path %></li>
-          <li><%= link_to 'JaQ Lib', books_path %></li>
-          <li><%= link_to 'JaQ News', articles_path %></li>
+          <li><%= link_to 'JaQ NEWS', articles_path %></li>
+          <li><%= link_to 'JaQ LIB', books_path %></li>
           <% if user_signed_in? %>
             <li><%= link_to "アカウント設定", edit_user_registration_path %></li>
             <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
@@ -58,10 +58,9 @@
         <div class="p7-b" data-p7id="e7888985598a4d4783599fe34799ff96" data-p7c="r"></div>
         <script src="https://jaqlib.app.push7.jp/static/button/p7.js" charset="UTF-8"></script>
       <% end %>
+      <p>© 2016-2017 JaQ Miraisozo Office</p>
       </div>
     </div>
-
-    
   </div>
 
 </div>

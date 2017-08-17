@@ -15,13 +15,14 @@
         <h6><%= truncate(article.url_description, length:200) %></h6>
         <div align="right">
         <button type="button" class="btn btn-primary btn-xs" id="<%= article.id %>" onclick="good(<%= article.id %>)">ぱねぇ！</button> 
-        <span id="num<%= article.id %>"><%= article.feelings_count %></span>人
+        <span id="num<%= article.id %>"><%= article.feelings_count %></span>人 | 
+        <span>閲覧数：<%= article.article_views_count %><span>人
         <h6>
           <% if article.user_id.to_i == current_user.id.to_i %>
             <%= link_to '記事を削除', article, method: :delete, data: { confirm: '削除してよろしいですか？' } %>
           <% end %>
-          　投稿者：<%= article.user.user_name %>　投稿日時：<%= (article.created_at).strftime("%Y/%m/%d %H:%M") %>
-          　閲覧数：<%= article.article_views_count %>
+            投稿者：<%= article.user.user_name %>
+            投稿日時：<%= (article.created_at).strftime("%Y/%m/%d %H:%M") %>
         </h6>
         </div>
       </td>

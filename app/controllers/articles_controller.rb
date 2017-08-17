@@ -20,6 +20,11 @@ class ArticlesController < ApplicationController
   end
 
   def show
+    @article_view = ArticleView.new()
+    @article_view.article_id = params[:id]
+    @article_view.user_id = current_user.id
+    @article_view.save
+
     redirect_to @article.url
   end
 

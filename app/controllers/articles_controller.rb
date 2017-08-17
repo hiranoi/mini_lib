@@ -20,6 +20,7 @@ class ArticlesController < ApplicationController
   end
 
   def show
+    redirect_to @article.url
   end
 
   def new

@@ -10,15 +10,15 @@ class MailController < ApplicationController
 			return
 		end
 
-		# タイトル
-		subject = '新着お知らせメール'
+		subject = '【JaQNews】新着お知らせメール便'
+
+        articles = Article.get_new_articles_weekly
 
 		to = ENV['MAIL_TO']
 		from = ENV['MAIL_FROM']
-		UserNotifier.new_arrival_mail(to,from,subject).deliver
+		UserNotifier.new_arrival_mail(to,from,subject,articles).deliver
 
 		success = {"text"=> "新着お知らせメールを送信しました"}		
 		render :json => success
 	end
-
 end

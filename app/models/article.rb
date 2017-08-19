@@ -16,15 +16,26 @@ class Article < ActiveRecord::Base
    		article.url_thumbnail = object.images.empty? ? nil : object.images.first.src.to_s
 
      	article
-		 end
+    end
 
-		def self.get_new_articles
+	def self.get_new_articles
 
-			t = Time.now
+		t = Time.now
 
-			from = Time.local(t.year, t.month, t.day)
-			to = Time.local(t.year, t.month, t.day + 1)
+		from = Time.local(t.year, t.month, t.day)
+		to = Time.local(t.year, t.month, t.day + 1)
 
-			articles = Article.where(:created_at => from..to)
-		end
+		articles = Article.where(:created_at => from..to)
+	end
+
+    def self.get_new_articles_weekly
+
+        t = Time.now
+
+        from = Time.local(t.year, t.month, t.day - 7)
+        to = Time.local(t.year, t.month, t.day + 1)
+
+        articles = Article.where(:created_at => from..to)
+    end
+
 end

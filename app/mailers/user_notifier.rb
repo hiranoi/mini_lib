@@ -1,7 +1,9 @@
 class UserNotifier < ApplicationMailer
-  default :from => 'xxx@example.com'
 
-  def new_arrival_mail(to,from,subject)
+  def new_arrival_mail(to,from,subject,articles)
+
+  	@articles = articles
+
     mail( :to => to,
     :from => from,
     :subject => subject )

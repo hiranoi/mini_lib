@@ -31,6 +31,9 @@ Rails.application.routes.draw do
   # PUSH
   post 'push' => 'push#create'
 
+  # Mail
+  post 'mail' => 'mail#create'
+
   # ユーザー管理
   devise_for :users, :controllers => {
     :registrations => 'users/registrations'

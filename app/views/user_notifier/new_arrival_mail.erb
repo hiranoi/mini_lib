@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+</head>
+<body>
+JaQの皆様<br>
+<br>
+JaQNewsに新しい記事がUPされています。<br>
+是非ご確認ください。<br>
+<br>
+<% @articles.each do |article| %>
+<%= article.title %>（<%= article.user.user_name %>）<br>
+<a href="<%= article.url %>"><%= article.url_title %></a><br>
+<br>
+<% end %>
+-------<br>
+JaQNewsへ記事の投稿もお待ちしています。<br>
+http://minilib.herokuapp.com/articles
+</body>
+</html>

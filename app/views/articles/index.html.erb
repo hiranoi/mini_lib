@@ -10,7 +10,7 @@
     <tr>
       <td>
         <span class="badge"><%= article.article_views_count %> views</span>
-        <span class="badge" id="num<%= article.id %>"><%= article.feelings_count %> <i class="fa fa-thumbs-o-up" aria-hidden="true"></i></span>
+        <span class="badge"><span id="num<%= article.id %>"><%= article.feelings_count %></span> <i class="fa fa-thumbs-o-up" aria-hidden="true"></i></span>
         <a href="/articles/<%= article.id %>" target=”_blank”><img src=<%= article.url_thumbnail %> alt=<%= article.url_title %> width="60" align="right"></a>
         <h4><a href="/articles/<%= article.id %>" target=”_blank”><%= article.title %></a></h4>
         <h5><a href="/articles/<%= article.id %>" target=”_blank”><%= article.url_title %></a></h5>
@@ -48,7 +48,7 @@ function good(id){
 }
 function countUp(id){
   var str = "#num"+id;
-  var val = parseInt($(str).text().trim(" <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>"));
+  var val = parseInt($(str).text());
   $(str).text(String(val+1));
 }
 </script>

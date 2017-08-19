@@ -21,5 +21,4 @@ class Push < ActiveRecord::Base
 
     push.save
   end
-
 end

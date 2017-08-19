@@ -13,21 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20170817015306) do
 
-  create_table "active_admin_comments", force: :cascade do |t|
-    t.string   "namespace"
-    t.text     "body"
-    t.string   "resource_id",   null: false
-    t.string   "resource_type", null: false
-    t.integer  "author_id"
-    t.string   "author_type"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "active_admin_comments", ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id"
-  add_index "active_admin_comments", ["namespace"], name: "index_active_admin_comments_on_namespace"
-  add_index "active_admin_comments", ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id"
-
   create_table "admin_users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -63,7 +48,7 @@ ActiveRecord::Schema.define(version: 20170817015306) do
     t.string   "url_thumbnail"
     t.string   "url_description"
     t.integer  "feelings_count",      default: 0
-    t.integer  "article_views_count"
+    t.integer  "article_views_count", default: 0
   end
 
   create_table "books", force: :cascade do |t|
@@ -111,19 +96,6 @@ ActiveRecord::Schema.define(version: 20170817015306) do
     t.integer  "book_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "slides", force: :cascade do |t|
-    t.string   "slide_id"
-    t.string   "title"
-    t.string   "url"
-    t.string   "thumbnail_url"
-    t.string   "embed"
-    t.string   "recommend_user"
-    t.string   "recommend_comment"
-    t.integer  "user_id"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
   end
 
   create_table "users", force: :cascade do |t|

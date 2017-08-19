@@ -1,6 +1,7 @@
 class Article < ActiveRecord::Base
     belongs_to :user
 	has_many :feelings
+    has_many :article_views
 
     validates :title, length: { maximum: 60 }
     validates :url, :title, presence: true

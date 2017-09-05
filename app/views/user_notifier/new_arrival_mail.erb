@@ -11,7 +11,7 @@ JaQNewsに新しい記事がUPされています。<br>
 <br>
 <% @articles.each do |article| %>
 <%= article.title %>（<%= article.user.user_name %>）<br>
-<a href="<%= article.url %>"><%= article.url_title %></a><br>
+<a href="http://localhost:3000/articles/<%= article.id %>"><%= article.url_title %></a><br>
 <br>
 <% end %>
 -------<br>

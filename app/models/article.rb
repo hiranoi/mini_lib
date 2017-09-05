@@ -23,7 +23,7 @@ class Article < ActiveRecord::Base
 		t = Time.now
 
 		from = Time.local(t.year, t.month, t.day)
-		to = Time.local(t.year, t.month, t.day + 1)
+		to = Time.local(t.year, t.month, t.day) + 24*60*60
 
 		articles = Article.where(:created_at => from..to)
 	end
@@ -32,10 +32,10 @@ class Article < ActiveRecord::Base
 
         t = Time.now
 
-        from = Time.local(t.year, t.month, t.day - 7)
-        to = Time.local(t.year, t.month, t.day + 1)
+        from = Time.local(t.year, t.month, t.day) - 24*60*60*7
+        to = Time.local(t.year, t.month, t.day) + 24*60*60
 
-        articles = Article.where(:created_at => from..to)
+        articles = Article.where(:created_at => from..to).order('article_views_count DESC').limit(5)
     end
 
 end

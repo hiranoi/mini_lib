@@ -10,9 +10,14 @@ class MailController < ApplicationController
 			return
 		end
 
-		subject = '【JaQNews】新着お知らせメール便'
-
         articles = Article.get_new_articles_weekly
+
+        if articles.empty?
+          render :json => {"text" => "新しい記事はありません"}
+          return
+        end
+
+		subject = '【JaQNews】新着お知らせメール便'
 
 		to = ENV['MAIL_TO']
 		from = ENV['MAIL_FROM']

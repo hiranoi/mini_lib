@@ -5,7 +5,7 @@ class PushController < ApplicationController
   def create
 
     # token check
-    if params[:token] != ENV['SLACK_TOKEN']
+    if params[:token] != ENV['SLACK_TOKEN_PUSH']
       render :json => {"text" => "Tokenチェックエラー"}
       return
     end

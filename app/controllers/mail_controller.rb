@@ -5,7 +5,7 @@ class MailController < ApplicationController
 	def create
 
 		# check
-		if params[:token] != ENV['SLACK_TOKEN']
+		if params[:token] != ENV['SLACK_TOKEN_MAIL']
 			render :json => {"text" => "Tokenチェックエラー"}
 			return
 		end

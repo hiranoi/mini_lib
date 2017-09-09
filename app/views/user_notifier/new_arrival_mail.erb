@@ -12,7 +12,7 @@ JaQNewsに新しい記事がUPされています。<br>
 -------<br>
 <% @articles.each do |article| %>
 <%= article.title %>（<%= article.user.user_name %>）：<%= article.article_views_count %>人が閲覧<br>
-<a href="http://localhost:3000/articles/<%= article.id %>"><%= article.url_title %></a><br>
+<a href="http://minilib.herokuapp.com/articles/<%= article.id %>"><%= article.url_title %></a><br>
 <br>
 <% end %>
 -------<br>

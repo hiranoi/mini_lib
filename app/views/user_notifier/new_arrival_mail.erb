@@ -7,10 +7,11 @@
 JaQの皆様<br>
 <br>
 JaQNewsに新しい記事がUPされています。<br>
-是非ご確認ください。<br>
+今週の人気記事をお知らせします。<br>
 <br>
+-------<br>
 <% @articles.each do |article| %>
-<%= article.title %>（<%= article.user.user_name %>）<br>
+<%= article.title %>（<%= article.user.user_name %>）：<%= article.article_views_count %>人が閲覧<br>
 <a href="http://localhost:3000/articles/<%= article.id %>"><%= article.url_title %></a><br>
 <br>
 <% end %>

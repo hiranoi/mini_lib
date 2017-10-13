@@ -1,5 +1,6 @@
 class Article < ActiveRecord::Base
     belongs_to :user
+    belongs_to :category
 	has_many :feelings
     has_many :article_views
 

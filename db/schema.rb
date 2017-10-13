@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170817015306) do
+ActiveRecord::Schema.define(version: 20171013000538) do
 
   create_table "admin_users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 20170817015306) do
     t.string   "url_description"
     t.integer  "feelings_count",      default: 0
     t.integer  "article_views_count", default: 0
+    t.integer  "category_id",         default: 0
   end
 
   create_table "books", force: :cascade do |t|
@@ -65,6 +66,12 @@ ActiveRecord::Schema.define(version: 20170817015306) do
     t.string   "amazon_url"
     t.string   "image_url"
     t.string   "description"
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "comments", force: :cascade do |t|

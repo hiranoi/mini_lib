@@ -19,6 +19,10 @@
     <%= f.label :url %>
     <%= f.text_field :url %>
   </div>
+  <div class="field">
+    <label>記事カテゴリ</label>
+    <%= f.select :category_id, @categories.map{|t| [t.name, t.id]} %>
+  </div>  
   <div class="actions">
     <button type="submit" class="btn btn-primary">登録する</button>
   </div>

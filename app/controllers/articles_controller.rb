@@ -30,7 +30,7 @@ class ArticlesController < ApplicationController
 
   def new
     @article = Article.new
-    @categories = ArticleCategory.all
+    @categories = Category.all
   end
 
   def edit
@@ -73,7 +73,7 @@ class ArticlesController < ApplicationController
     end
 
     def article_params
-      params.require(:article).permit(:title, :url, :category_id)
+      params.require(:article).permit(:title, :url, :article_category_id)
     end
 
     def set_search

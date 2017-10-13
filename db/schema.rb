@@ -31,8 +31,7 @@ ActiveRecord::Schema.define(version: 20171013000538) do
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
 
-  create_table "article_categories", force: :cascade do |t|
-    t.string   "code"
+  create_table "categories", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -56,7 +55,7 @@ ActiveRecord::Schema.define(version: 20171013000538) do
     t.string   "url_description"
     t.integer  "feelings_count",      default: 0
     t.integer  "article_views_count", default: 0
-    t.string   "category_code"
+    t.integer  "category_id",         default: 0
   end
 
   create_table "books", force: :cascade do |t|

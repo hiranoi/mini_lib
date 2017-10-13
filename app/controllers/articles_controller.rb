@@ -73,7 +73,7 @@ class ArticlesController < ApplicationController
     end
 
     def article_params
-      params.require(:article).permit(:title, :url, :category_code)
+      params.require(:article).permit(:title, :url, :category_id)
     end
 
     def set_search

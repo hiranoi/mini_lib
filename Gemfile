@@ -48,6 +48,9 @@ gem 'link_thumbnailer'
 
 gem 'amazon-ecs'
 
+gem 'paperclip', '~> 4.3'
+gem 'aws-sdk', '< 2.0'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

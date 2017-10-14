@@ -27,6 +27,12 @@
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
   </div>
 
+  <div class="field">
+    <label>アイコン画像を設定してください</label>
+    <%= f.file_field :avatar %>
+  </div>
+
+  <br>
   <div class="action">
     <button type="submit" class="btn btn-primary">作成する</button>
   </div>

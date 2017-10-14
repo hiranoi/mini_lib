@@ -10,6 +10,14 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  # 画像UPLOAD
+  has_attached_file :avatar, styles: {
+    thumb: '100x100>',
+    square: '200x200#',
+    medium: '300x300>'
+  }
+  validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
+
   # オーバーライドしてcurrent_passwordなしでも更新できるようにする
   # ※拾ったものをコピペした
   # allow users to update their accounts without passwords
@@ -25,13 +33,5 @@ class User < ActiveRecord::Base
     clean_up_passwords
     result
   end
-
-  has_attached_file :avatar, styles: {
-    thumb: '100x100>',
-    square: '200x200#',
-    medium: '300x300>'
-  }
-
-  validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
 
 end

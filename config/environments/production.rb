@@ -85,7 +85,7 @@ Rails.application.configure do
     AWS_secret_key:ENV['AWS_SECRET_KEY']
   }
 
-  config.paperclip_defaults = {
+config.paperclip_defaults = {
   storage: :s3,
   s3_credentials: {
     bucket: ENV.fetch('S3_BUCKET_NAME'),

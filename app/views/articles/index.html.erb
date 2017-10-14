@@ -16,31 +16,29 @@
             <span class="label label-primary"><%= article.category.name %></span>
           <% end %>
           <span class="badge"><%= article.article_views_count %> views</span>
-          <span class="badge"><span id="num<%= article.id %>"><%= article.feelings_count %></span> <i class="fa fa-thumbs-o-up" aria-hidden="true"></i></span>
+          <span class="badge" id="<%= article.id %>" onclick="good(<%= article.id %>)"><span id="num<%= article.id %>"><%= article.feelings_count %></span> <i class="fa fa-thumbs-o-up" aria-hidden="true"> ぱねぇ!</i></span>
         </div>
-
-        <% if article.user.avatar_file_name.nil? %>
-          <img src="/assets/default" alt="<%= article.user.user_name %>" height="30" align="left">
-        <% else %>
-          <img src=<%= article.user.avatar.url(:thumb) %> alt="<%= article.user.user_name %>" height="30" align="left">
-        <% end %>
 
         <h4><a href="/articles/<%= article.id %>"  onclick="ga('send', 'event', 'Article', 'click_title', '<%= article.url %>');" target=”_blank”><%= article.title %></a></h4>
 
-        <br>
         <h5><a href="/articles/<%= article.id %>"  onclick="ga('send', 'event', 'Article', 'click_url_title', '<%= article.url %>');" target=”_blank”><%= article.url_title %></a></h5>
         <h6><%= truncate(article.url_description, length:200) %></h6>
 
         <div align="right">
-        <button type="button" class="btn btn-warning btn-xs" id="<%= article.id %>" onclick="good(<%= article.id %>)">ぱねぇ！</button>
-        <h6>
-          <% if article.user_id.to_i == current_user.id.to_i %>
-            <%= link_to '記事を削除', article, method: :delete, data: { confirm: '削除してよろしいですか？' } %>
-          <% end %>
-            投稿者：<%= article.user.user_name %>
-            投稿日時：<%= (article.created_at).strftime("%m/%d %H:%M") %>
-        </h6>
+          <% if article.user.avatar_file_name.nil? %>
+              <img src="/assets/default" alt="<%= article.user.user_name %>" height="30">
+          <% else %>
+              <img src=<%= article.user.avatar.url(:thumb) %> alt="<%= article.user.user_name %>" height="30">
+          <% end %>        
+          <h6>
+            <% if article.user_id.to_i == current_user.id.to_i %>
+              <%= link_to '記事を削除', article, method: :delete, data: { confirm: '削除してよろしいですか？' } %>　
+            <% end %>
+              <%= (article.created_at).strftime("%m/%d(%a) %H:%M") %>　　
+              投稿者：<%= article.user.user_name %>
+          </h6>
         </div>
+
       </td>
     </tr>
 <% end %>

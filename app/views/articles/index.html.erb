@@ -34,11 +34,10 @@
             <% if article.user_id.to_i == current_user.id.to_i %>
               <%= link_to '記事を削除', article, method: :delete, data: { confirm: '削除してよろしいですか？' } %>　
             <% end %>
-              <%= (article.created_at).strftime("%m/%d(%a) %H:%M") %>　　
+              <%= (article.created_at).strftime("%m/%d(%a) %H:%M") %>　
               投稿者：<%= article.user.user_name %>
           </h6>
         </div>
-
       </td>
     </tr>
 <% end %>

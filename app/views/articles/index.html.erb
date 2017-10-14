@@ -20,9 +20,9 @@
         </div>
 
         <% if article.user.avatar_file_name.nil? %>
-          <img src="/assets/default" alt=<%= article.user.user_name %> width="30" align="left">
+          <img src="/assets/default" alt=<%= article.user.user_name %> height="30" align="left">
         <% else %>
-          <img src=<%= article.user.avatar.url(:thumb) %> alt=<%= article.user.user_name %> width="30" align="left">
+          <img src=<%= article.user.avatar.url(:thumb) %> alt=<%= article.user.user_name %> height="30" align="left">
         <% end %>
 
         <h4><a href="/articles/<%= article.id %>"  onclick="ga('send', 'event', 'Article', 'click_title', '<%= article.url %>');" target=”_blank”><%= article.title %></a></h4>

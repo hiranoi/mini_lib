@@ -26,9 +26,9 @@
 
         <div align="right">
           <% if article.user.avatar_file_name.nil? %>
-              <img src="/assets/default" alt="<%= article.user.user_name %>" height="30">
+              <img src="/assets/default" alt="<%= article.user.user_name %>" height="50">
           <% else %>
-              <img src=<%= article.user.avatar.url(:thumb) %> alt="<%= article.user.user_name %>" height="30">
+              <img src=<%= article.user.avatar.url(:thumb) %> alt="<%= article.user.user_name %>" height="50">
           <% end %>        
           <h6>
             <% if article.user_id.to_i == current_user.id.to_i %>

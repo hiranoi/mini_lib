@@ -1,10 +1,16 @@
 class ArticlesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_article, only: [:show, :edit, :update, :destroy]
-  before_filter :set_search
 
   def index
-    @articles = @q.result(distinct: true).joins(:user).order('id DESC').page(params[:page]).per(20)
+
+    category_id = params[:category_id];
+
+    if category_id.nil?
+      @articles = Article.order('created_at DESC').page(params[:page]).per(2)
+    else
+      @articles = Article.where(category_id: category_id).order('created_at DESC').page(params[:page]).per(2)
+    end
 
     @articles.collect! do |article|
       if article.url_title.nil?
@@ -74,9 +80,5 @@ class ArticlesController < ApplicationController
 
     def article_params
       params.require(:article).permit(:title, :url, :category_id)
-    end
-
-    def set_search
-      @q = Article.search(params[:q])
     end
 end

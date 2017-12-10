@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   # 記事
   resources :articles
+  get 'search' => 'articles#search'
 
   # コメント（画面内遷移なし）
   resources :comments
@@ -20,10 +21,6 @@ Rails.application.routes.draw do
     end
     resources :comments
   end
-
-  # スライド
-  resources :slides
-  get 'recommendSlides' => 'slides#recommend'
 
   # 貸出履歴
   get 'rent_history' => 'rent_history#index'

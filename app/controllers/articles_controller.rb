@@ -42,6 +42,9 @@ class ArticlesController < ApplicationController
   def edit
   end
 
+  def search
+  end
+
   def create
     @article = Article.new(article_params)
     @article.user_id = current_user.id

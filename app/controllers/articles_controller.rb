@@ -7,9 +7,9 @@ class ArticlesController < ApplicationController
     category_id = params[:category_id];
 
     if category_id.nil?
-      @articles = Article.order('created_at DESC').page(params[:page]).per(2)
+      @articles = Article.order('created_at DESC').page(params[:page]).per(10)
     else
-      @articles = Article.where(category_id: category_id).order('created_at DESC').page(params[:page]).per(2)
+      @articles = Article.where(category_id: category_id).order('created_at DESC').page(params[:page]).per(10)
     end
 
     @articles.collect! do |article|
@@ -43,6 +43,8 @@ class ArticlesController < ApplicationController
   end
 
   def search
+    @categories = Category.all
+    @users = User.order('last_sign_in_at DESC').limit(20)
   end
 
   def create

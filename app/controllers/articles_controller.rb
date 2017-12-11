@@ -4,11 +4,14 @@ class ArticlesController < ApplicationController
 
   def index
 
-    category_id = params[:category_id];
+    category_id = Category.exists?(params[:category_id]) ? params[:category_id] : nil
+    user_id = User.exists?(params[:user_id]) ? params[:user_id] :nil
 
-    if category_id.nil?
+    if category_id.nil? && user_id.nil?
       @articles = Article.order('created_at DESC').page(params[:page]).per(10)
-    else
+    elsif !user_id.nil? 
+      @articles = Article.where(user_id: user_id).order('created_at DESC').page(params[:page]).per(10)
+    elsif !category_id.nil? 
       @articles = Article.where(category_id: category_id).order('created_at DESC').page(params[:page]).per(10)
     end
 

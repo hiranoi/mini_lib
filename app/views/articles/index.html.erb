@@ -1,4 +1,6 @@
-<button class="btn btn-info btn-block  active" onClick="location.href='/articles/new'">新しい記事を追加する</button>
+<button class="btn btn-primary btn btn-block" onClick="location.href='/articles/new'">新しい記事を追加する</button>
+<button class="btn btn-secondary btn btn-block" onClick="location.href='/search'">記事を絞り込む</button>
+<button class="btn btn-secondary btn btn-block" onClick="location.href='/articles'">絞込を解除</button>
 
 <%= paginate @articles %>
 
@@ -13,10 +15,10 @@
 
         <div align="left">
           <% if !article.category.nil? %>
-            <span class="label label-primary"><%= article.category.name %></span>
+            <span class="badge badge-<%= article.category.theme %>"><%= article.category.name %></span>
           <% end %>
-          <span class="badge"><%= article.article_views_count %> views</span>
-          <span class="badge" id="<%= article.id %>" onclick="good(<%= article.id %>)"><span id="num<%= article.id %>"><%= article.feelings_count %></span> <i class="fa fa-thumbs-o-up" aria-hidden="true"> ぱねぇ!</i></span>
+          <span class="badge badge-pill badge-secondary"><%= article.article_views_count %> views</span>
+          <span class="badge badge-pill badge-secondary" id="<%= article.id %>" onclick="good(<%= article.id %>)"><span id="num<%= article.id %>"><%= article.feelings_count %></span> <i class="fa fa-thumbs-o-up" aria-hidden="true"> ぱねぇ!</i></span>
         </div>
 
         <h4><a href="/articles/<%= article.id %>"  onclick="ga('send', 'event', 'Article', 'click_title', '<%= article.url %>');" target=”_blank”><%= article.title %></a></h4>
@@ -29,7 +31,7 @@
               <img src="/assets/default" alt="<%= article.user.user_name %>" height="50">
           <% else %>
               <img src=<%= article.user.avatar.url(:thumb) %> alt="<%= article.user.user_name %>" height="50">
-          <% end %>        
+          <% end %>
           <h6>
             <% if article.user_id.to_i == current_user.id.to_i %>
               <%= link_to '記事を削除', article, method: :delete, data: { confirm: '削除してよろしいですか？' } %>　

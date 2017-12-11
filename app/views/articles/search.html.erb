@@ -1,0 +1,26 @@
+<h1>記事の絞り込み</h1>
+
+<h5>カテゴリ</h5>
+<div class="list-group">
+<% @categories.each do |category| %>
+  <a href="/articles/?category_id=<%= category.id %>" class="list-group-item list-group-item-action">
+  	<%= category.name %>
+  </a>
+<% end %>
+</div>
+<br>
+<h5>投稿者</h5>
+<div class="list-group">
+<% @users.each do |user| %>
+  <a href="/articles/?user_id=<%= user.id %>" class="list-group-item d-flex justify-content-between align-items-center">
+  	<%= user.user_name %>
+	<% if user.avatar_file_name.nil? %>
+	  <img src="/assets/default" alt="<%= user.user_name %>" height="50">
+	<% else %>
+	  <img src=<%= user.avatar.url(:thumb) %> alt="<%= user.user_name %>" height="50">
+	<% end %>
+  </a>
+<% end %>
+</div>
+<br>
+<%= link_to '戻る', articles_path %>

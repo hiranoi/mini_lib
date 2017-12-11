@@ -1,6 +1,6 @@
-<h1>記事の検索</h1>
+<h1>記事の絞り込み</h1>
 
-<h5>カテゴリから探す</h5>
+<h5>カテゴリ</h5>
 <div class="list-group">
 <% @categories.each do |category| %>
   <a href="/articles/?category_id=<%= category.id %>" class="list-group-item list-group-item-action">
@@ -9,7 +9,7 @@
 <% end %>
 </div>
 <br>
-<h5>投稿者から探す</h5>
+<h5>投稿者</h5>
 <div class="list-group">
 <% @users.each do |user| %>
   <a href="/articles/?category_id=1" class="list-group-item d-flex justify-content-between align-items-center">

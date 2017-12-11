@@ -1,5 +1,6 @@
 <button class="btn btn-primary btn btn-block" onClick="location.href='/articles/new'">新しい記事を追加する</button>
-<button class="btn btn-secondary btn btn-block" onClick="location.href='/search'">記事を検索する</button>
+<button class="btn btn-secondary btn btn-block" onClick="location.href='/search'">記事を絞り込む</button>
+<button class="btn btn-secondary btn btn-block" onClick="location.href='/articles'">絞込を解除</button>
 
 <%= paginate @articles %>
 
@@ -30,7 +31,7 @@
               <img src="/assets/default" alt="<%= article.user.user_name %>" height="50">
           <% else %>
               <img src=<%= article.user.avatar.url(:thumb) %> alt="<%= article.user.user_name %>" height="50">
-          <% end %>        
+          <% end %>
           <h6>
             <% if article.user_id.to_i == current_user.id.to_i %>
               <%= link_to '記事を削除', article, method: :delete, data: { confirm: '削除してよろしいですか？' } %>　

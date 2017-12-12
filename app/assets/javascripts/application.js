@@ -12,7 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require bootstrap.min
 //= require jquery.scrolly.min
 //= require jquery.dropotron.min
 //= require jquery.scrollex.min

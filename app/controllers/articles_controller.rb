@@ -1,10 +1,19 @@
 class ArticlesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_article, only: [:show, :edit, :update, :destroy]
-  before_filter :set_search
 
   def index
-    @articles = @q.result(distinct: true).joins(:user).order('id DESC').page(params[:page]).per(20)
+
+    category_id = Category.exists?(params[:category_id]) ? params[:category_id] : nil
+    user_id = User.exists?(params[:user_id]) ? params[:user_id] :nil
+
+    if category_id.nil? && user_id.nil?
+      @articles = Article.order('created_at DESC').page(params[:page]).per(10)
+    elsif !user_id.nil? 
+      @articles = Article.where(user_id: user_id).order('created_at DESC').page(params[:page]).per(10)
+    elsif !category_id.nil? 
+      @articles = Article.where(category_id: category_id).order('created_at DESC').page(params[:page]).per(10)
+    end
 
     @articles.collect! do |article|
       if article.url_title.nil?
@@ -34,6 +43,11 @@ class ArticlesController < ApplicationController
   end
 
   def edit
+  end
+
+  def search
+    @categories = Category.all
+    @users = User.order('last_sign_in_at DESC').limit(20)
   end
 
   def create
@@ -74,9 +88,5 @@ class ArticlesController < ApplicationController
 
     def article_params
       params.require(:article).permit(:title, :url, :category_id)
-    end
-
-    def set_search
-      @q = Article.search(params[:q])
     end
 end

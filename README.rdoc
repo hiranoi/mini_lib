@@ -6,9 +6,11 @@
 == 開発環境構築
     git clone https://github.com/hiranoi/mini_lib.git
     cd mini_lib
+    vi .env #s3プロパティを記載する。井上さんに連絡
     bundle install
     bundle exec rake db:migrate
     bundle exec rake db:seed
+    rails server
 
 * http://localhost:3000/ にアクセス
 * [新規アカウント登録]よりアカウントを作成する
@@ -34,3 +36,15 @@
 
 == 書籍一括登録バッチの利用方法
 * TODO:書く
+
+== DBを直接参照
+
+* 開発DBを参照する場合は、sqliteのバイナリを直接読み込む
+ * `sqlite3 db/development.sqlite3`
+
+```
+shunshunke-MacBook-Air:mini_lib[develop]$ sqlite3 db/development.sqlite3
+SQLite version 3.8.5 2014-08-15 22:37:57
+Enter ".help" for usage hints.
+sqlite>
+```

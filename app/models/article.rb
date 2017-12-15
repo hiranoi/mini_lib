@@ -29,14 +29,14 @@ class Article < ActiveRecord::Base
 		articles = Article.where(:created_at => from..to)
 	end
 
-    def self.get_new_articles_weekly
+    def self.get_new_articles_weekly(category_id)
 
         t = Time.now
 
         from = Time.local(t.year, t.month, t.day) - 24*60*60*7
         to = Time.local(t.year, t.month, t.day) + 24*60*60
 
-        articles = Article.where(:created_at => from..to).order('article_views_count DESC').limit(5)
+        articles = Article.where(:category_id => category_id,:created_at => from..to).order('article_views_count DESC').limit(5)
     end
 
 end

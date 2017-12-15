@@ -299,7 +299,7 @@ ul.sidebar li a h1,ul.sidebar li a h2,ul.sidebar li a h3,ul.sidebar li a h4,ul.s
 							<td>
 								
 								<!-- Callout Panel -->
-								<p class="callout">まだアカウントをお持ちでない方はこちらから新規アカウントを作成してJaQNewsに参加しよう！<a href="#">新規アカウント作成画面へ &raquo;</a>
+								<p class="callout">まだアカウントをお持ちでない方はこちらから新規アカウントを作成してJaQNewsに参加してみてください！<a href="#">新規アカウント作成画面へ &raquo;</a>
 								</p><!-- /callout panel -->
 								
 							</td>
@@ -315,25 +315,29 @@ ul.sidebar li a h1,ul.sidebar li a h2,ul.sidebar li a h3,ul.sidebar li a h4,ul.s
 				</table>
 			</div><!-- /content -->
 
+<% @articles_array.each_with_index do |articles, index| %>
 			<div class="content">
 				
 				<table bgcolor="">
 					<tr>
 						<td class="small" width="20%" style="vertical-align:top;padding-right:10px;" ><img src="http://placehold.it/75x75" /></td>
 						<td>
-							<h3>ビジネス</h3>
-							
-							<p class="">
-								コメントコメントコメント（なまえ） 閲覧数：25<br>
-								<a href="">タイトルタイトル</a>
-							</p>
+							<h3><%= @categories[index].name %></h3>
 
-							<a class="btn">"ビジネス"の記事一覧を見る &raquo;</a>
+							<% articles.each do |article| %>
+
+							<p class="">
+								<%= article.title %>（<%= article.user.user_name %>） 閲覧数：<%= article.article_views_count %><br>
+								<a href="https://minilib.herokuapp.com/articles/<%= article.id %>"><%= article.url_title %></a>
+							</p>
+							<% end %>
+
+							<a href="https://minilib.herokuapp.com/articles/?category_id=<%= index + 1 %>" class="btn">"<%= @categories[index].name %>"の記事一覧を見る &raquo;</a>
 						</td>
 					</tr>
 				</table>
-			
 			</div><!-- /content -->
+<% end %>
 		</td>
 		<td></td>
 	</tr>

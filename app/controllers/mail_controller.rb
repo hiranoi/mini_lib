@@ -10,18 +10,24 @@ class MailController < ApplicationController
 			return
 		end
 
-        articles = Article.get_new_articles_weekly
+        articles = Article.get_new_articles_weekly(2)
 
         if articles.empty?
           render :json => {"text" => "新しい記事はありません"}
           return
         end
 
+        categories = Category.all
+
+        articles_array = categories.collect do |category|
+        	Article.get_new_articles_weekly(category.id)
+        end
+
 		subject = '【JaQNews】新着お知らせメール便'
 
 		to = ENV['MAIL_TO']
 		from = ENV['MAIL_FROM']
-		UserNotifier.new_arrival_mail(to,from,subject,articles).deliver
+		UserNotifier.new_arrival_mail(to,from,subject,categories,articles_array).deliver
 
 		success = {"text"=> "新着お知らせメールを送信しました"}		
 		render :json => success
